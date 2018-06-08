@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>议事通</title>
+    <!-- Bootstrap Styles-->
+    <link href="{$Think.config.web_res_root}css/bootstrap.min.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="{$Think.config.web_res_root}css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="{$Think.config.web_res_root}js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="{$Think.config.web_res_root}css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- TABLE STYLES-->
+    <link href="{$Think.config.web_res_root}js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    <!--DATE PICKER-->
+    <link href="{$Think.config.web_res_root}css/pikaday.css" rel="stylesheet" />
+    <link href="{$Think.config.web_res_root}css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+</head>
+<body>
+<div id="wrapper">
+    {include file="top" /}
+    <!--/. NAV TOP  -->
+    {include file="left" /}
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper" >
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">
+                        议题列表
+                    </h1>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+
+
+            <div class="row">
+                <div class="">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading">
+                            搜索条件
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <label>会议名称&nbsp&nbsp:&nbsp&nbsp</label>
+                                                <input type="text" id="search_name">
+                                                <label>会议日期&nbsp&nbsp:&nbsp&nbsp</label>
+                                                <input type="text" id="fabu_start" class="date_picker" placeholder="点击选择日期"/>&nbsp;&nbsp;--&nbsp;&nbsp;
+                                                <input type="text" id="fabu_end" class="date_picker" placeholder="点击选择日期"/>
+                                                <button type="button" class="btn btn-primary" onclick="search_project()">搜索</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-group" id="btngroup{rand}">
+                                <button class="btn btn-default active" id="state_-2" onclick="change_status(-2)" type="button">全部议题</button>
+                                <button class="btn btn-default" id="state_0" onclick="change_status(0)" type="button">未审核</button>
+                                <button class="btn btn-default" id="state_1" onclick="change_status(1)" type="button">审核通过</button>
+                                <button class="btn btn-default" id="state_2" onclick="change_status(2)" type="button">已通过</button>
+                                <button class="btn btn-default" id="state_3" onclick="change_status(3)" type="button">已否决</button>
+                                <button class="btn btn-default" id="state_4" onclick="change_status(4)" type="button">延期</button>
+                                <button class="btn btn-default" id="state_-1" onclick="change_status(-1)" type="button">审核失败</button>
+                            </div>
+                            <button type="button" class="btn btn-primary"  onclick="add_issue()">添加议题</button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div class="tab-pane fade active in" id="">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- Advanced Tables -->
+                                            <div class="panel panel-default">
+
+                                                <div class="panel-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>id</th>
+                                                                <th>议题名称</th>
+                                                                <th>发起人</th>
+                                                                <th>发起时间</th>
+                                                                <th>文件状态</th>
+                                                                <th>议题状态</th>
+                                                                <th>通过百分百</th>
+                                                                <th>会议名称</th>
+                                                                <th>操作</th>
+                                                            </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!--End Advanced Tables -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+
+        </div>
+        {include file="footer" /}
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Modal title Here</h4>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /. PAGE WRAPPER  -->
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="{$Think.config.web_res_root}js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="{$Think.config.web_res_root}js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="{$Think.config.web_res_root}js/jquery.metisMenu.js"></script>
+<!-- DATA TABLE SCRIPTS -->
+<script src="{$Think.config.web_res_root}js/dataTables/jquery.dataTables.js"></script>
+<script src="{$Think.config.web_res_root}js/dataTables/dataTables.bootstrap.js"></script>
+<!--Morris JS-->
+<script src="{$Think.config.web_res_root}js/morris/raphael-2.1.0.min.js"></script>
+<script src="{$Think.config.web_res_root}js/morris/morris.js"></script>
+<!-- Custom Js -->
+<script src="{$Think.config.web_res_root}js/custom-scripts.js"></script>
+<!--DATE PICKER-->
+<script src="{$Think.config.web_res_root}js/datepicker/bootstrap-datetimepicker.js"></script>
+<script src="{$Think.config.web_res_root}js/datepicker/locales/bootstrap-datetimepicker.fr.js"></script>
+<script>
+    $('.date_picker').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1,
+        format: 'yyyy-mm-dd',
+        minView: '2'
+    });
+
+    function add_issue(){
+        location.href = "/index/meet.issue/add";
+    }
+</script>
+<script>
+    var status = -2;
+    function change_status(state){
+        $("button[id^='state']").removeClass('active');
+        $('#state_'+state+'').addClass('active');
+        status = state;
+        refreshDataTable()
+    }
+    $(document).ready(function() {
+        refreshDataTable();
+    });
+
+    function search_project(){
+        refreshDataTable();
+    }
+
+    function shenhe(id) {
+        $.ajax({
+            url: '/index/meet.issue/acceptIssue',//这个就是请求地址对应sAjaxSource
+            data : {
+                "id":id
+            },
+            type: 'POST',
+            dataType: 'json',
+            async: true,
+            success: function (result) {
+                var res = JSON.parse(result);
+                alert(res.msg);
+                history.go(0)
+            },
+            error:function(result) {
+                alert("审核失败");
+
+            }
+        });
+    }
+
+
+    function delete_issue(id)
+
+    {
+        var r=confirm("确认删除该议题?");
+
+        if (r==true)
+        {
+            $.ajax({
+                url: '/index/meet.issue/deleteIssue',//这个就是请求地址对应sAjaxSource
+                data : {
+                    "id":id
+                },
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                success: function (result) {
+                    alert(result.msg);
+                    history.go(0)
+                },
+                error:function(result) {
+                    alert("删除失败");
+                }
+            });
+        }
+    }
+
+    var refreshDataTable=function(e) {
+        var table = $('#dataTables-example').DataTable({
+            "sPaginationType": "full_numbers",
+            'language': {
+                'emptyTable': '没有数据',
+                'loadingRecords': '加载中...',
+                'processing': '查询中...',
+                'search': '检索:',
+                'lengthMenu': '每页 _MENU_ 条',
+                'zeroRecords': '没有数据',
+                'paginate': {
+                    'first':      '第一页',
+                    'last':       '最后一页',
+                    'next':       '下一页',
+                    'previous':   '上一页'
+                },
+                'info': '第 _PAGE_ 页 / 总 _PAGES_ 页',
+                'infoEmpty': '没有数据',
+                'infoFiltered': '(过滤总件数 _MAX_ 条)'
+            },
+            columnDefs:[
+                {
+                    "targets": 8,//编辑
+                    "data": "0",//编辑
+                    "render":function (data, type, row) {
+                        if(row[5] == 0){
+                            if(row[9]==1){
+                                return "<a id='editrow' href='detail?id="+data+"' class='btn btn-primary btn-sm' type='button'><i class='fa fa-edit'>编辑</i></ a>" +
+                                        "<a id='editrow' onclick='shenhe("+data+")' class='btn btn-primary btn-sm' type='button'><i class='fa fa-edit'></i>通过</ a>" +
+                                        "<a id='editrow' onclick='delete_issue("+data+")' class='btn btn-primary btn-sm' type='button'><i class='fa fa-edit'></i>删除</ a>";
+                            }else{
+                                return "<a id='editrow' href='detail?id=" + data + "' class='btn btn-primary btn-sm' type='button'><i class='fa fa-edit'>编辑</i></ a>"+
+                                        "<a id='editrow' onclick='delete_issue("+data+")' class='btn btn-primary btn-sm' type='button'><i class='fa fa-edit'></i>删除</ a>";
+                            }
+
+                        }else {
+                            return "<a id='editrow' href='detail?id=" + data + "' class='btn btn-primary btn-sm' type='button'><i class='fa fa-edit'>编辑</i></ a>"+
+                                    "<a id='editrow' onclick='delete_issue("+data+")' class='btn btn-primary btn-sm' type='button'><i class='fa fa-edit'></i>删除</ a>";
+//                            return "<button class='btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal'>编辑</button>"
+                        }
+                    }
+                },
+                {
+                    "targets": 5,
+                    "render" : function (data, type, row) {
+                        if(data==-1){
+                            return '审核失败';
+                        }else if(data==0){
+                            if(row[8]-1 == 0){
+                                return '未审核('+(row[8]-1)+'/'+row[10]+')';
+                            }else{
+                                return '审核中('+(row[8]-1)+'/'+row[10]+')';
+                            }
+                        }else if(data==1){
+                            return '审核通过';
+                        }else if(data==2){
+                            return '已通过';
+                        }else if(data==3){
+                            return '已否决';
+                        }else if(data==4){
+                            return '延期';
+                        }else{
+                            return '无';
+                        }
+                    }
+                }
+            ],
+            "searching":false,
+            "bPaginite": true,
+            "bFilter" : false,
+            "bInfo": true,
+            "bSort": false,
+            "processing": false,
+            "bServerSide": true,
+            "destroy":true,
+            "sAjaxSource": "/index/meet.issue/getIssueList",//这个是请求的地址
+            "fnServerData": retrieveData// 获取数据的处理函数
+
+        });
+        function retrieveData(url, aoData, fnCallback) {
+            $.ajax({
+                url: url,//这个就是请求地址对应sAjaxSource
+                data : {
+                    "aoData":JSON.stringify(aoData),
+                    "name": $('#search_name').val(),
+                    "create_time": $('#create_time').val(),
+                    "status":status
+                },
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                success: function (result) {
+                    console.log(result);
+                    fnCallback(result);//把返回的数据传给这个方法就可以了,datatable会自动绑定数据的
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("status:"+XMLHttpRequest.status+",readyState:"+XMLHttpRequest.readyState+",textStatus:"+textStatus);
+
+                }
+            });
+        }
+    };
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+/*talking.css*/
+.talking-bg{
+	/*background: url(../images/talking_bg.png) no-repeat center;	*/
+	background-size: cover;
+}
+.talking-ul{
+	margin-bottom: 5rem;
+}
+.talking-ul span{
+	position: relative;
+	padding:1rem 2rem;
+	cursor: pointer;
+}
+.talking-ul span:hover{
+	color: #FA6C17;
+}
+.talking-ul span b{
+	position: absolute;
+	left: 40%;
+    bottom: 0;
+    width: 40%;
+    margin-left: -10%;
+	border-bottom:2px solid #FA6C17 ;
+}
+.tab{
+	display: none;
+}
+.show{
+	display: block !important;
+}
+.zan{
+	background-image: url(images/zan_ico.png);
+}
+.zan-tab{
+	background-image: url(images/zan_tab_ico.png);
+}
+#bdshare>a{
+	height: 22px;
+}
+/*超小设备手机*/
+@media (max-width: 768px) {
+	
+}
+/*小型设备平板电脑,最大宽度750px*/
+@media (min-width: 768px) {
+	
+}
+/*中型设备台式电脑,最大宽度970px*/
+@media (min-width: 992px){
+	
+}
+/*大型设备台式电脑,最大宽度1170px大屏幕*/
+@media (min-width: 1200px){
+	
+}

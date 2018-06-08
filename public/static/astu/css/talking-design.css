@@ -1,0 +1,25 @@
+.navbar-brand span,.container-fluid .navbar-collapse ul li a{
+    color: black;
+}
+.navbar-nav .qq{
+    background-color: black;
+}
+.title-design{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.title-design h2{
+    margin: 0;
+}
+/* .title-design>div:nth-child(1){
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+} */
+.title-main-content{
+    width: 100%;
+    /*height: 596px;*/
+    /*background-color: #f2f2f2;*/
+    margin-bottom: 27px;
+}

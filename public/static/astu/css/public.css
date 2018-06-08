@@ -1,0 +1,360 @@
+/*公用样式*/
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑" !important;
+}
+h1,h2{
+	font-weight: bold;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+	font-family: "微软雅黑" !important;
+}
+p{
+	margin: 0;
+}
+ol,ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.text-orange{
+	color:#FA6C17;
+}
+.text-blue{
+	color:#16C8FB;
+}
+/*头部导航*/
+.navbar-default{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 20;
+	/*background-color: transparent;*/
+	background-color: rgba(0,0,0,0);
+	border: none;
+    color:white;
+	border-bottom: 1px solid  rgba(153,153,153,0.2);
+	padding: 5px 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.navbar-default .navbar-nav>li>a{
+    color:white;
+}
+.scrolled{
+    background-color: white;
+
+}
+.scrolled .navbar-nav>li>a{
+    color: #777;
+}
+.scrolled .navbar-brand>span{
+    color: #777;
+}
+
+.navbar-brand{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.navbar-brand>span{
+	padding: 0 10px;
+	color: white;
+}
+.navbar-nav{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.navbar-collapse .navbar-nav li:nth-child(9){
+	border-left: 1px solid #ccc;
+	padding-left: 10px;
+}
+.navbar-collapse .navbar-nav li:nth-child(10){
+	padding-left: 10px;
+}
+/* .navbar-default .navbar-collapse .navbar-nav li:nth-child(8)::after{
+	content: '';
+	display: block;
+	height: 50px;
+	width: 1px;
+	background-color: #ccc;
+} */
+.navbar-collapse .navbar-nav li:nth-child(9) a{
+	padding: 10px;
+}
+.navbar-collapse .navbar-nav li:nth-child(10) a{
+	padding: 10px;
+}
+.navbar-default .navbar-nav > li > a:hover{
+	/*color: #ccc;*/
+	color: orange;
+}
+.navbar-collapse .navbar-nav li:nth-child(9) a:hover{
+	background-color: black;
+}
+
+.navbar-collapse .navbar-nav li:nth-child(10) a:hover{
+    background-color: black;
+}
+
+.navbar-collapse .navbar-nav li a{
+	/*color: white;*/
+}
+.navbar-nav .qq{
+	/*background-color: white;*/
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 20px;
+	width: 20px;
+}
+.navbar-nav .qq img{
+	width: 10px;
+	height: 10px;
+}
+.navbar-header{
+	float: left;
+	left: 0;
+}
+.navbar-collapse{
+	float: right;
+	right: 0;
+}
+@media (max-width:1040px) {
+	.navbar-brand>img{
+		display: none;
+	}
+}
+@media (max-width:900px) {
+	.navbar-collapse .navbar-nav li a{
+		padding: 15px 10px;
+	}
+}
+@media (max-width:850px){
+	.navbar-header{
+		width: 100%;
+	}
+	.navbar-toggle.collapsed{
+		float: right;
+		right: 0;
+	}
+}
+/*公用标题*/
+.public-title{
+	text-align: center;
+}
+.public-title h1{
+	font-size: 22px;
+	margin-bottom: 2rem;
+	font-weight: bold;
+}
+.public-title h3{
+	font-size: 22px;
+	/*color: #696969;*/
+}
+.public-title h1 span,.public-title h2 span{
+	color: #FA6C17;
+}
+.public-title h5{
+	margin: 2rem 0;
+	color: #ccc;
+}
+.public-title p{
+	font-weight: bold;
+}
+.public-title div{
+	border-top: 2px solid #000;
+	width: 50px;
+	margin: 2rem auto;
+}
+/*公用按钮*/
+p.public-btn{
+	height: 36px;
+}
+p.public-btn .btn{
+	width:110px;
+	line-height: 1rem;
+	margin-top: 1rem;
+	padding:5px 0;
+	border-radius: 3px;
+}
+/*公用样式*/
+.text-white{
+	color: #fff;
+}
+.margin-bottom{
+	margin-bottom: 50px;
+}
+.public-bg{
+	position: relative;
+	/*height:500px;*/
+	/*color: #fff;*/
+	background-size: cover;
+}
+.public-bg>div{
+	/*position: absolute;*/
+	/*left:15%;*/
+	bottom:20%;
+}
+
+/* Carousel base class */
+.carousel {
+	height: 500px;
+	/*top:60px;*/
+	margin-bottom: 120px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+	z-index: 10;
+	bottom:20%;
+    background-size: 100%;
+    max-width: 950px;
+	/*left: 10%;*/
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+	height: 500px;
+	background-color: #777;
+}
+.carousel-inner > .item > img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	height: 500px;
+}
+
+/*footer*/
+footer{
+	width:100%;
+	margin-top: 50px;
+	padding-top: 50px;
+	color: #A0A0A0;
+	background-color: #333333;
+}
+footer .footer-left{
+	margin-bottom: 50px;
+}
+footer .footer-left h1{
+	margin-top: 0;
+}
+footer .footer-left p{
+	line-height: 2rem;
+}
+footer .footer-right h4{
+	color: #C8C8C8;
+	font-weight: bold;
+}
+footer .footer-right ul li a{
+	line-height: 2rem;
+	color:#A0A0A0;
+}
+footer .footer-right .code{
+	max-width: 290px;
+}
+footer .footer-right .code>div{
+	margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+footer .footer-right .code>p{
+	line-height: 2rem;
+}
+footer .footer-right .partner{
+	padding-left: 15px;
+}
+footer .footer-right .partner h4{
+	margin: 1rem 0;
+	padding: 0;
+}
+footer .footer-right .partner>div{
+	padding: 0;
+	margin-bottom: 1rem;
+}
+footer .copy{
+	text-align: center;
+	padding: 3rem 0;
+	background-color: #000;
+	
+}
+/*超小设备手机*/
+@media (max-width: 768px) {
+	
+	h1{
+		font-size: 22px;
+	}
+	
+	.public-bg{
+		height:250px;
+	}
+	
+}
+/*小型设备平板电脑,最大宽度750px*/
+@media (min-width: 768px) {
+	
+  
+}
+@media (max-width :875px){
+	
+}
+/*中型设备台式电脑,最大宽度970px*/
+@media (min-width: 992px){
+	
+}
+/*大型设备台式电脑,最大宽度1170px大屏幕*/
+@media (min-width: 1200px){
+	
+}
+
+/* carousel */
+.carousel-control .glyphicon-chevron-right, .carousel-control .glyphicon-chevron-left{
+	width: 50px;
+	height: 50px;
+} 
+
+.carousel-control .glyphicon-chevron-left{
+	margin-left: 0px;
+}
+
+.left.carousel-control span.glyphicon-chevron-left{
+	float: left;
+	left: 0px;
+}
+.left.carousel-control span.glyphicon-chevron-left::before{
+	content:'\e257';
+	/* display: inline-block; */
+	padding: 10px;
+	background-color: gray;
+	/* opacity: 0.2; */
+	color: white;
+}
+.right.carousel-control span.glyphicon-chevron-right{
+	float: right;
+	right: 0px;
+}
+.glyphicon.glyphicon-chevron-right,.glyphicon.glyphicon-chevron-left{
+	line-height: 50px;
+}
+.carousel-control .glyphicon-chevron-right{
+	margin-right: 0px;
+}
+.right.carousel-control span.glyphicon-chevron-right::before{
+	content:'\e258';
+	/* display: inline-block;
+	margin-right: 0px; */
+	padding: 10px;
+	background-color: gray;
+	/* opacity: 0.2; */
+	color: white; 
+}
+
+#maxpic{
+	width: 200px;
+	height: 200px;
+	position:absolute;
+	display:none; /*隐藏层*/
+}

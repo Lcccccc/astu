@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>议事通</title>
+    <!-- Bootstrap Styles-->
+    <link href="{$Think.config.web_res_root}css/bootstrap.min.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="{$Think.config.web_res_root}css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="{$Think.config.web_res_root}css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!--uploadfile-->
+    <link rel="stylesheet" href="{$Think.config.web_res_root}js/uploadfile/css/zyUpload.css" type="text/css">
+
+    <!--DATE PICKER-->
+    <link href="{$Think.config.web_res_root}css/pikaday.css" rel="stylesheet" />
+    <link href="{$Think.config.web_res_root}css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">-->
+    <![endif]-->
+
+    <style type="text/css">
+        .mask {
+            position: absolute; top: 0px; filter: alpha(opacity=60); background-color: #777;
+            z-index: 1002; left: 0px;
+            opacity:0.5; -moz-opacity:0.5;
+        }
+        .md-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            max-width: 550px;
+            min-width: 320px;
+            height: auto;
+            z-index: 9999999;
+            visibility: hidden;
+            background-color: whitesmoke;
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            -moz-transform: translateX(-50%) translateY(-50%);
+            -ms-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+    </style>
+
+</head>
+
+<body>
+<div id="wrapper">
+    {include file="top" /}
+    <!--/. NAV TOP  -->
+    {include file="left" /}
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">
+                        添加议题
+                    </h1>
+                </div>
+
+                <div class="col-md-12">
+                    <form role="form" id="form1">
+                        {if condition="($add == 1)"}
+                            <input class="form-control" id="issue_id" type="hidden" value="{$issue.id}">
+                            <div class="form-group">
+                                <label>议题名称</label>
+                                <input class="form-control" id="name" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label >期待上会日期</label>
+                                <input type="text" id="date" class="date_picker form-control" placeholder="点击选择日期"/>
+                            </div>
+                            <div class="form-group">
+                                <label>议题内容</label>
+                                <textarea id="issue_content" class="form-control" rows="3"></textarea>
+                            </div>
+                        {else}
+                        <input class="form-control" id="issue_id" type="hidden" value="{$issue.id}">
+                        <div class="form-group">
+                            <label>议题名称</label>
+                            <input class="form-control" id="name" type="text" value="{$issue.name}" disabled="">
+                        </div>
+                        <div class="form-group">
+                            <label>发起人</label>
+                            <input class="form-control" id="creater" type="text" value="{$issue.create_uname}" disabled="">
+                        </div>
+                        <div class="form-group">
+                            <label>发布时间</label>
+                            <input class="form-control" id="create_time" type="text" value="{$issue.create_time}" disabled="">
+                        </div>
+                        <div class="form-group">
+                            <label >期待上会日期</label>
+                            <input type="text" id="date" class="date_picker form-control "  value="{$issue.on_start_date}"  disabled=""/>
+                        </div>
+                        <div class="form-group">
+                            <label>议题内容</label>
+                            <textarea id="issue_content" class="form-control" rows="3" disabled="" >{$issue.content}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="disabledSelect">所属会议</label>
+                            <input class="form-control" id="meeting" type="text" value="{$issue.meeting_name}" disabled="">
+                        </div>
+                        {/if}
+                    </form>
+
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <div class="form-group">
+                <a onclick="upload_img('issue_file')" class="btn btn-primary">上传议题材料</a>
+                <div id="issue_file" class="issue_file"></div>
+                <div id="issue_file_status" class="alert alert-success" style="display: none"></div>
+                <div id="issue_file_url" style="display: none"></div>
+                <div id="issue_switch_file" style="display: none"></div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="issue_update()">提交</button>
+            {include file="footer" /}
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<div id="mask" class="mask"></div>
+<div class="md-modal" id="modal-1">
+    <div class="md-content">
+        <h3>提示：</h3>
+        <div>
+            <p><ul><li><strong>文件正在转换中，请不要关闭窗口</strong></li></ul></p>
+            <!--<button class="md-close btn-sm btn-primary">Close me!</button>-->
+        </div>
+    </div>
+</div>
+
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="{$Think.config.web_res_root}/js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="{$Think.config.web_res_root}/js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="{$Think.config.web_res_root}/js/jquery.metisMenu.js"></script>
+<!-- Morris Chart Js -->
+<script src="{$Think.config.web_res_root}/js/morris/raphael-2.1.0.min.js"></script>
+<script src="{$Think.config.web_res_root}/js/morris/morris.js"></script>
+<!-- Custom Js -->
+<script src="{$Think.config.web_res_root}/js/custom-scripts.js"></script>
+<!--uploadfile-->
+<script type="text/javascript" src="{$Think.config.web_res_root}/js/uploadfile/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="{$Think.config.web_res_root}/js/uploadfile/zyFile.js"></script>
+<script type="text/javascript" src="{$Think.config.web_res_root}/js/uploadfile/js/zyUpload.js"></script>
+<script type="text/javascript" src="{$Think.config.web_res_root}/js/uploadfile.js"></script>
+
+
+<script type="text/javascript" src="{$Think.config.web_res_root}/js/jquery.uploadView.js"></script>
+
+<!--DATE PICKER-->
+<script src="{$Think.config.web_res_root}js/datepicker/bootstrap-datetimepicker.js"></script>
+<script src="{$Think.config.web_res_root}js/datepicker/locales/bootstrap-datetimepicker.fr.js"></script>
+<script>
+    $('.date_picker').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1,
+        format: 'yyyy-mm-dd',
+        minView: '2'
+    });
+</script>
+<script type="text/javascript">
+    //兼容火狐、IE8
+    //显示遮罩层
+    function showMask(){
+        $("#mask").css("height",$(document).height());
+        $("#mask").css("width",$(document).width());
+        $("#mask").show();
+    }
+    //隐藏遮罩层
+    function hideMask(){
+        $("#mask").hide();
+    }
+
+</script>
+
+<script>
+//    function change_dept(){
+//        $.ajax({
+//            type:"POST",
+//            data:{
+//                dept_id:$('#dept option:selected') .val()
+//            },
+//            url:"/index/system.dept/get_user",
+//            success:function(res) {
+//                var options = "";
+//                if (res.length > 0) {
+//                    options += "<option value=''>请选择</option>";
+//                    for (var i = 0; i < res.length; i++) {
+//                        options += "<option value=" + res[i].id + ">" + res[i].username + "</option>";
+//                    }
+//                }else{
+//                    options += "<option value=''>无</option>";
+//                }
+//                $('#creater').html(options)
+//            },
+//            error:function(msg){
+//                alert(msg.msg);
+//            }
+//        });
+//    }
+
+    function upload_img(div){
+
+        $(".issue_file").html('');
+        $(".issue_file").removeAttr("style");
+        $("#"+div).zyUpload({
+            width            :   "650px",                 // 宽度
+            height           :   "400px",                 // 宽度
+            itemWidth        :   "120px",                 // 文件项的宽度
+            itemHeight       :   "100px",                 // 文件项的高度
+            url              :   "/index/system.UploadFile/upload",  // 上传文件的路径
+            multiple         :   true,                    // 是否可以多个文件上传
+            dragDrop         :   true,                    // 是否可以拖动上传文件
+            del              :   true,                    // 是否可以删除文件
+            finishDel        :   false,  				  // 是否在上传文件完成后删除预览
+            urlDiv           :   div + "_url",
+            formPage         :   'issue',
+            /* 外部获得的回调接口 */
+            onSelect: function(files, allFiles){                    // 选择文件的回调方法
+                console.info("当前选择了以下文件：");
+                console.info(files);
+                console.info("之前没上传的文件：");
+                console.info(allFiles);
+            },
+            onDelete: function(file, surplusFiles){                     // 删除一个文件的回调方法
+                console.info("当前删除了此文件：");
+                console.info(file);
+                console.info("当前剩余的文件：");
+                console.info(surplusFiles);
+            },
+            onSuccess: function(file){                    // 文件上传成功的回调方法
+                console.info("此文件上传成功：");
+                console.info(file);
+            },
+            onFailure: function(file){                    // 文件上传失败的回调方法
+                console.info("此文件上传失败：");
+                console.info(file);
+            },
+            onComplete: function(responseInfo){           // 上传完成的回调方法
+                console.info("文件上传完成");
+                console.info(responseInfo);
+//                $(".issue_file").html('');
+//                $(".issue_file").removeAttr("style");
+                showMask();
+                $("#modal-1").css('visibility','visible');
+                switch_file();
+                $("#" + div + "_status").html('上传成功');
+                $("#" + div + "_status").css("display",'block');
+            }
+        });
+    }
+
+    function issue_update(){
+        $.ajax({
+            type:"POST",
+            data:{
+                name:$("#name").val(),
+                dept_id:$('#dept option:selected') .val(),
+                dept_name:$('#dept option:selected') .text(),
+                create_uid:$('#creater option:selected') .val(),
+                create_uname:$('#creater option:selected') .text(),
+                content:$('#issue_content') .val(),
+                target_per:$('#target_per') .val(),
+                date:$('#date') .val(),
+                files:$("#issue_file_url").text(),
+                switch_files:$("#issue_switch_file").text(),
+                'id':$("#issue_id").val()
+            },
+            url:"addIssue",
+            success:function(msg){
+                alert(msg.msg);
+                if(msg.code == 0){
+                    window.history.back(-1);
+                }
+            },
+            error:function(msg){
+                alert(msg.msg);
+            }
+        });
+    }
+
+    function switch_file(){
+        $.ajax({
+            type:"POST",
+            data:{
+                files:$("#issue_file_url").text()
+            },
+            url:"/index/system.Filehandle/switch_files",
+            success:function(msg){
+                alert('文件上传转换成功！');
+                hideMask();
+                $("#modal-1").css('visibility','hidden');
+                $("#issue_switch_file").append(msg)
+            },
+            error:function(msg){
+                hideMask();
+                $("#modal-1").css('visibility','hidden');
+                alert(msg.msg);
+            }
+        });
+    }
+
+
+</script>
+
+</body>
+
+</html>

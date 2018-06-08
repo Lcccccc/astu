@@ -1,0 +1,144 @@
+/*services.css*/
+.services-bg{
+	/*background: url(../images/services_bg.jpg) no-repeat center;*/
+	background-size: cover;
+}
+.services-content{
+	margin-bottom: 6rem;
+}
+.services-content h1{
+	margin: 0;
+	margin-bottom: 3rem;
+	font-size: 4rem;
+	font-family: impact !important;
+}
+.services-content img{
+	width:100%;
+}
+.services-content p{
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+	color: #ccc;
+	line-height: 2rem;
+}
+.service-content-two{
+	padding: 5rem 0;
+	background: url(../images/service_bg2.jpg) no-repeat center;
+	color: #fff;
+}
+.service-content-two dl dt{
+	width:200px;
+	height:200px;
+	margin: 0 auto;
+	line-height: 190px;
+	font-size: 5rem;
+	border: 10px solid #D1C712;
+	border-radius: 50%;
+}
+.service-content-two dl dd{
+	margin:1rem 0;
+}
+.service-content-three img{
+	width: 100%;
+}
+.service-content-three>div{
+	margin-top: 3rem;
+	margin-bottom:2rem ;
+}
+.service-content-three h4{
+	margin-bottom: 2rem;
+}
+.service-content-three b{
+	display: inline-block;
+	width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #bbb;
+    margin-bottom: 2rem;
+}
+.service-content-three ul li a{
+	line-height: 3rem;
+	color:#bbb;
+	text-decoration:none ;
+}
+.service-content-three ul li a:hover{
+	color:#FA6C17;
+	
+}
+/*超小设备手机*/
+@media (max-width: 768px) {
+	.services-content{
+		text-align: center;
+	}
+	.services-content img{
+		width: 100%;
+	}
+	.services-content p{
+		width: 100%;
+	}
+	.service-content-three{
+		text-align: center;
+	}
+	.service-content-three img{
+		width: 100%;
+	}
+}
+/*小型设备平板电脑,最大宽度750px*/
+@media (min-width: 768px) {
+	.services-content img{
+		width: 500px;
+	}
+	.services-content{
+		text-align: center;
+	}
+	.services-content p{
+		width: 500px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.service-content-three{
+		text-align: center;
+	}
+	.service-content-three img{
+		width: 350px;
+	}
+}
+/*中型设备台式电脑,最大宽度970px*/
+@media (min-width: 992px){
+	.services-content{
+		text-align: left;
+	}
+	.services-content img{
+		width: 100%;
+	}
+	.services-content p{
+		width: 100%;
+		margin-left:0;
+		margin-right:0;
+	}
+	.service-content-three{
+		text-align: left;
+	}
+	.service-content-three img{
+		width: 100%;
+	}
+}
+/*大型设备台式电脑,最大宽度1170px大屏幕*/
+@media (min-width: 1200px){
+	.services-content{
+		text-align: left;
+	}
+	.services-content img{
+		width: 100%;
+	}
+	.services-content p{
+		width:100%;
+	}
+	.service-content-three{
+		text-align: left;
+	}
+	.service-content-three img{
+		width: 100%;
+	}
+}

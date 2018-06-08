@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>议事通</title>
+    <!-- Bootstrap Styles-->
+    <link href="{$Think.config.web_res_root}css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="{$Think.config.web_res_root}css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="{$Think.config.web_res_root}js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="{$Think.config.web_res_root}css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+</head>
+<body>
+<div id="wrapper">
+    {include file="top" /}
+    <!--/. NAV TOP  -->
+    {include file="left" /}
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                        用户分组管理
+                    </h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-body">
+                                <form role="form">
+                                    <div class="row">
+                                        <input class="form-control" id="group_id" type="hidden" value="{$group.id}">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label><font color="red">*</font> 用户组名</label>
+                                                <input class="form-control" type="text" id="name" value="{$group.name}">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label><font color="red">*</font> 分组等级</label>
+                                                <input class="form-control" type="text" id="level"
+                                                       value="{$group.level}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label style="display: block">状态</label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="status" value="1"
+                                                           {$group.status==1?checked:''}>启用
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="status" value="0"
+                                                           {$group.status==1?'':checked}>停用
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label style="display: block">APP权限 </label>
+                                                {volist name="apprule" id="data"}
+                                                {if condition="$data.ingroup eq 1"}
+                                                <div class="checkbox-inline">
+                                                    <label>
+                                                        <input type="checkbox" name="apprule_ids" value="{$data.id}"
+                                                               checked>{$data.name}
+                                                    </label>
+                                                </div>
+                                                {else /}
+                                                <div class="checkbox-inline">
+                                                    <label>
+                                                        <input type="checkbox" name="apprule_ids" value="{$data.id}">{$data.name}
+                                                    </label>
+                                                </div>
+                                                {/if}
+                                                {/volist}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label style="display: block">后台权限 </label>
+                                                {volist name="webrule" id="data"}
+                                                {if condition="$data.ingroup eq 1"}
+                                                <div class="checkbox-inline">
+                                                    <label>
+                                                        <input type="checkbox" name="webrule_ids" value="{$data.id}"
+                                                               checked>{$data.name}
+                                                    </label>
+                                                </div>
+                                                {else /}
+                                                <div class="checkbox-inline">
+                                                    <label>
+                                                        <input type="checkbox" name="webrule_ids" value="{$data.id}">{$data.name}
+                                                    </label>
+                                                </div>
+                                                {/if}
+                                                {/volist}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+
+
+            <button type="button" class="btn btn-primary" onclick="group_update()">提交</button>
+            {include file="footer" /}
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="{$Think.config.web_res_root}js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="{$Think.config.web_res_root}js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="{$Think.config.web_res_root}js/jquery.metisMenu.js"></script>
+<!--Morris JS-->
+<script src="{$Think.config.web_res_root}js/morris/raphael-2.1.0.min.js"></script>
+<script src="{$Think.config.web_res_root}js/morris/morris.js"></script>
+<!-- Custom Js -->
+<script src="{$Think.config.web_res_root}js/custom-scripts.js"></script>
+
+<script type="text/javascript" src="{$Think.config.web_res_root}/js/layer/layer.js"></script>
+
+<script>
+    function group_update() {
+        var apprule = "", webrule = "";
+        $("input[name='apprule_ids']:checkbox:checked").each(function () {
+            apprule += ($(this).val() + ',')
+        });
+        $("input[name='webrule_ids']:checkbox:checked").each(function () {
+            webrule += ($(this).val() + ',')
+        });
+        $.ajax({
+            type: "POST",
+            data: {
+                id: $("#group_id").val(),
+                name: $("#name").val(),
+                web_rule: webrule.substr(0, webrule.length - 1),
+                app_rule: apprule.substr(0, apprule.length - 1),
+                level: $("#level").val(),
+                status: $("input[name='status']:checked").val()
+            },
+            url: "savegroup",
+            success: function (ret) {
+                if (ret.code == 0) {
+                    layer.msg('保存分组成功');
+                    setTimeout(function () {
+                        window.history.back(-1);
+                    }, 1000);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

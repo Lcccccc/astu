@@ -1,0 +1,111 @@
+/*cooperation.css*/
+.coo-bg{
+	/*background: url(../images/coo_bg.png) no-repeat center;	*/
+	background-size: cover;
+}
+.company-info h3{
+	font-weight: bold;
+}
+.company-info p{
+	font-size: 12px;
+	color: #ccc;
+}
+.require{
+	margin-top: 100px;
+	padding: 50px 0; 
+	color: #fff !important;
+	background-color: #000;
+}
+.require .public-title>div{
+	border-color: #fff;
+}
+.require .row .margin-left{
+	color: #9D9D9D;
+	border-radius: 5px;
+	margin-bottom: 2rem;
+	margin-left: 1rem;
+	padding: 1rem;
+	background-color: #3F3F3F;
+}
+.require .row .margin-left:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.require .row .margin-left label{
+	width: auto;
+	float: left;
+	line-height: 2rem;
+}
+.require .row .margin-left input,.require .row .margin-left textarea{
+	width: 75%;
+	float: left;
+}
+.require .row input,.require .row textarea{
+	border: none;
+	outline: none;
+	background-color: #3F3F3F;
+	resize: none;
+}
+.require .row input:focus,.require .row textarea:focus{
+	border: none;
+	outline: none;
+	background-color: #3F3F3F;
+}
+.require .btn{
+	width:100%;
+	margin-top: 3rem;
+	line-height: 3rem;
+	font-size: 1.5rem;
+	color: #fff;
+	background-color: #FA6C17;
+}
+.require .btn:hover{
+	background-color: #E56215;
+}
+.require .btn:focus{
+	outline: none;
+}
+.coo-partner{
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+.coo-ico>div{
+	margin-bottom: 3rem;
+}
+/*超小设备手机*/
+@media (max-width: 768px) {
+	.coo-ico img{
+		width:100%;
+	}
+}
+/*小型设备平板电脑,最大宽度750px*/
+@media (min-width: 768px) {
+	.coo-ico img{
+		width:auto;
+	}
+	.require .row .margin-left label{
+		width: auto;
+	}
+	.require .row .margin-left input,.require .row .margin-left textarea{
+		width: 60%;
+	}
+}
+/*中型设备台式电脑,最大宽度970px*/
+@media (min-width: 992px){
+	.require .row .margin-left label{
+		width: auto;
+	}
+	.require .row .margin-left input,.require .row .margin-left textarea{
+		width: 70%;
+	}
+}
+/*大型设备台式电脑,最大宽度1170px大屏幕*/
+@media (min-width: 1200px){
+	.require .row .margin-left label{
+		width: auto;
+	}
+	.require .row .margin-left input,.require .row .margin-left textarea{
+		width: 75%;
+	}
+}

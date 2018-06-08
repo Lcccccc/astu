@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>议事通</title>
+    <!-- Bootstrap Styles-->
+    <link href="{$Think.config.web_res_root}css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="{$Think.config.web_res_root}css/font-awesome.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="{$Think.config.web_res_root}css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <!-- TABLE STYLES-->
+    <link href="{$Think.config.web_res_root}js/dataTables/dataTables.bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="wrapper">
+    {include file="top" /}
+    <!--/. NAV TOP  -->
+    {include file="left" /}
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">用户管理</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <div class="row">
+                <div class="tab-pane fade active in" id="daiban">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Advanced Tables -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <button id="add" class="btn btn-primary" onclick="add_user()"><i
+                                                    class="glyphicon glyphicon-plus"></i>新增
+                                            </button>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button id="decision" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-plus"></i>会议决策者</button>
+                                            <div class="panel-body">
+                                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title" id="myModalLabel">编辑决策者</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form role="form" id="form1">
+                                                                    <div class="form-group">
+                                                                        <label style="display: block"> 会议决策者</label>
+                                                                        {volist name="user" id="data"}
+                                                                        {if condition="$data.is_decision eq 1"}
+                                                                            <label class="radio-inline">
+                                                                                <input type="radio" name="is_decision" value="{$data.id}" checked>{$data.username}
+                                                                            </label>
+                                                                        {else}
+                                                                            <label class="radio-inline">
+                                                                                <input type="radio" name="is_decision" value="{$data.id}">{$data.username}
+                                                                            </label>
+                                                                        {/if}
+                                                                        {/volist}
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                                <button type="button" class="btn btn-primary" onclick="update_decision_user()">确认</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <input class="form-control" id="key" placeholder="姓名/部门/职位/用户名">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" id="search" type="button"
+                                                            clickadd="true"><i
+                                                            class="glyphicon glyphicon-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-striped table-bordered table-hover"
+                                           id="dataTables-example">
+                                        <thead>
+                                        <tr>
+                                            <th width="3%">id</th>
+                                            <th width="10%">头像</th>
+                                            <th>用户名</th>
+                                            <th>姓名</th>
+                                            <th>性别</th>
+                                            <th>年龄</th>
+                                            <th>部门</th>
+                                            <th>职位</th>
+                                            <th>分组</th>
+                                            <th>上级领导</th>
+                                            <th>联系方式</th>
+                                            <th>状态</th>
+                                            <th width="11%">操作</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--End Advanced Tables -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+
+        </div>
+        {include file="footer" /}
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="{$Think.config.web_res_root}js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="{$Think.config.web_res_root}js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="{$Think.config.web_res_root}js/jquery.metisMenu.js"></script>
+<!--Morris JS-->
+<script src="{$Think.config.web_res_root}js/morris/morris.js"></script>
+<!-- Custom Js -->
+<script src="{$Think.config.web_res_root}js/custom-scripts.js"></script>
+<!-- DATA TABLE SCRIPTS -->
+<script src="{$Think.config.web_res_root}js/dataTables/jquery.dataTables.js"></script>
+<script src="{$Think.config.web_res_root}js/dataTables/dataTables.bootstrap.js"></script>
+<!-- layer Js -->
+<script src="{$Think.config.web_res_root}js/layer/layer.js"></script>
+<script>
+    function add_user() {
+        location.href = "/index/system.user/add";
+    }
+    function update_decision_user(){
+        $.ajax({
+            type:"POST",
+            data:{
+                user_id:$("input[name='is_decision']:checked").val()
+            },
+            url:"updateDecisionUser",
+            success:function(msg){
+                alert(msg.msg);
+                location.reload();
+            },
+            error:function(msg){
+                alert(msg.msg);
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        refreshDataTable();
+
+        $('#search').click(function () {
+            refreshDataTable();
+        });
+    });
+
+    var refreshDataTable = function (e) {
+        var table = $('#dataTables-example').DataTable({
+            "sPaginationType": "full_numbers",
+            'language': {
+                "url": "{$Think.config.web_res_root}js/table-zh-cn.json"
+            },
+            'columns': [
+                {data: 'id'},
+                {data: 'face'},
+                {data: 'username'},
+                {data: 'realname'},
+                {data: 'gender'},
+                {data: 'age'},
+                {data: 'name'},
+                {data: 'ranking'},
+                {data: 'groupname'},
+                {data: 'supername'},
+                {data: 'phone'},
+                {data: 'status'}
+            ],
+            columnDefs: [
+                {
+                    "targets": 12,//编辑
+                    "data": "0",//编辑
+                    "render": function (data, type, row) {
+                        return "<a id='editrow' href='add?id=" + row.id + "' class='btn btn-primary' type='button'><i class='fa fa-edit'>编辑</i></a>" +
+                            "<button id='delrow' class='btn btn-danger yst-margin-l-5' type='button'><i class='fa fa-trash-o'>删除</i></button>";
+                    }
+                }, {
+                    "targets": 1,//编辑
+                    "data": "0",//编辑
+                    "render": function (data, type, row) {
+                        return '<img src="' + data + '" width="30%"/>';
+                    }
+                }, {
+                    "targets": 11,//编辑
+                    "data": "0",//编辑
+                    "render": function (data, type, row) {
+                        return (data == 1) ? '已启用' : '未启用';
+                    }
+                }, {
+                    "targets": 4,//编辑
+                    "data": "0",//编辑
+                    "render": function (data, type, row) {
+                        return data == 1 ?'男':'女';
+                    }
+                }
+            ],
+            "searching": false,
+            "bPaginite": true,
+            "bFilter": false,
+            "bInfo": true,
+            "bSort": false,
+            "processing": false,
+            "bServerSide": true,
+            "destroy": true,
+            "sAjaxSource": "getuserlist",//这个是请求的地址
+            "fnServerData": retrieveData// 获取数据的处理函数
+        });
+
+        $('#dataTables-example tbody').on('click', 'button#delrow', function () {
+            //获取id
+            var data = table.row($(this).parents('tr')).data();
+            layer.confirm('您确定删除当前用户？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.ajax({
+                    type:"post",
+                    data:{
+                        id:data.id
+                    },
+                    url:"/index/system.user/del",
+                    success:function(msg){
+                        if(msg.code ==0){
+                            layer.msg('删除用户成功');
+                            setTimeout(function () {
+                                window.location.reload();
+                            },1000);
+                        }
+                    }
+                });
+            }, function(){
+
+            });
+        });
+
+        function retrieveData(url, aoData, fnCallback) {
+            $.ajax({
+                url: url,//这个就是请求地址对应sAjaxSource
+                data: {
+                    "aoData": JSON.stringify(aoData),
+                    "key": $('#key').val()
+                },
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                success: function (result) {
+                    fnCallback(result);//把返回的数据传给这个方法就可以了,datatable会自动绑定数据的
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("status:" + XMLHttpRequest.status + ",readyState:" + XMLHttpRequest.readyState + ",textStatus:" + textStatus);
+                }
+            });
+        }
+    };
+</script>
+</body>
+</html>

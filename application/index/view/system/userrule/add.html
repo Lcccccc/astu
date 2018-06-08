@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>议事通</title>
+    <!-- Bootstrap Styles-->
+    <link href="{$Think.config.web_res_root}css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="{$Think.config.web_res_root}css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="{$Think.config.web_res_root}js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="{$Think.config.web_res_root}css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+
+</head>
+<body>
+<div id="wrapper">
+    {include file="top" /}
+    <!--/. NAV TOP  -->
+    {include file="left" /}
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                        添加权限
+                    </h2>
+                </div>
+            </div>
+
+            <!-- /. ROW  -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-body">
+                                <form role="form">
+                                    <div class="row">
+
+                                        <input class="form-control" id="id" type="hidden" value="{$userRule.id}">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label><font color="red">*</font> 权限名称</label>
+                                                <input class="form-control" type="text" id="name"
+                                                       value="{$userRule.name}">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label style="display: block">权限类型</label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="type" value="1"
+                                                           {$userRule.type==1?checked:''}>APP权限
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="type" value="2"
+                                                           {$userRule.type==2?checked:''}>后台权限
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label><font color="red">*</font> 权限编码</label>
+                                                <input class="form-control" type="text" id="code"
+                                                       value="{$userRule.code}">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>地址</label>
+                                                <input class="form-control" type="text" id="url"
+                                                       value="{$userRule.url}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+
+
+            <button type="button" class="btn btn-primary" onclick="save_userrule()">提交</button>
+            {include file="footer" /}
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="{$Think.config.web_res_root}js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="{$Think.config.web_res_root}js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="{$Think.config.web_res_root}js/jquery.metisMenu.js"></script>
+<!--Morris JS-->
+<script src="{$Think.config.web_res_root}js/morris/morris.js"></script>
+<!-- Custom Js -->
+<script src="{$Think.config.web_res_root}js/custom-scripts.js"></script>
+
+<script type="text/javascript" src="{$Think.config.web_res_root}/js/layer/layer.js"></script>
+<script>
+    function save_userrule() {
+        var name = $("#name").val();
+        if (name == '') {
+            layer.alert('请输入权限名称');
+            return;
+        }
+        var type = $("input[name='type']:checked").val();
+        if (type == '' || type == 0) {
+            layer.alert('请选择权限');
+            return;
+        }
+        var code = $('#code').val();
+        if (code == '') {
+            layer.alert('请选择编码');
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            data: {
+                id: $('#id').val(),
+                name: name,
+                type: type,
+                code: code,
+                url: $('#url').val()
+            },
+            url: "/index/system.userrule/addrule",
+            success: function (ret) {
+                if (ret.code == 0) {
+                    layer.msg('保存权限成功');
+                    setTimeout(function () {
+                        window.history.back(-1);
+                    }, 1000);
+                } else {
+                    layer.alert(ret.msg);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

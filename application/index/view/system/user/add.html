@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>议事通</title>
+    <!-- Bootstrap Styles-->
+    <link href="{$Think.config.web_res_root}css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="{$Think.config.web_res_root}css/font-awesome.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="{$Think.config.web_res_root}css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+</head>
+<style>
+    .face {
+        text-align: center;
+        display: block
+    }
+
+    .face a, .face img {
+        display: block;
+    }
+</style>
+<body>
+<div id="wrapper">
+    {include file="top" /}
+    <!--/. NAV TOP  -->
+    {include file="left" /}
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                        添加用户
+                    </h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-body">
+                                <form role="form">
+                                    <input class="form-control" id="user_id" type="hidden" value="{$user.id}">
+                                    <div class="row">
+                                        <div class="col-lg-10">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label><font color="red">*</font> 用户名</label>
+                                                        <input class="form-control" type="text" id="username"
+                                                               value="{$user.username}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>密码</label>
+                                                        <input class="form-control" type="text" id="password"
+                                                               value="{$user ?'': '123456'}" maxlength="20">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label><font color="red">*</font> 真实姓名</label>
+                                                        <input class="form-control" type="text" id="realname"
+                                                               value="{$user.realname}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label>年龄</label>
+                                                        <input class="form-control" type="number" id="age"
+                                                               value="{$user.age}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label style="display: block">性别</label>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="gender" value="1"
+                                                                   {$user.gender==1?checked:''}>男
+                                                        </label>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="gender" value="0"
+                                                                   {$user.gender==1?'':checked}>女
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label>所属部门</label>
+                                                    <select class="form-control" id="dept">
+                                                        <option value=''>请选择</option>
+                                                        {volist name="dept_list" id="data"}
+                                                        {if condition="$user.deptid==$data.id"}
+                                                        <option value="{$data.id}" selected>{$data.lefthtml} {$data.name}
+                                                        </option>
+                                                        {else /}
+                                                        <option value="{$data.id}">{$data.lefthtml} {$data.name}</option>
+                                                        {/if}
+                                                        {/volist}
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label><font color="red">*</font> 职位</label>
+                                                        <input class="form-control" type="text" id="ranking"
+                                                               value="{$user.ranking}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>用户分组</label>
+                                                        <select class="form-control" id="group">
+                                                            <option value=''>请选择</option>
+                                                            {volist name="group_list" id="data"}
+                                                            {if condition="$user.groupid==$data.id"}
+                                                            <option value="{$data.id}" selected>{$data.name}</option>
+                                                            {else /}
+                                                            <option value="{$data.id}">{$data.name}</option>
+                                                            {/if}
+                                                            {/volist}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>上级领导</label>
+                                                        <select class="form-control" id="super">
+                                                            <option value=''>请选择</option>
+                                                            {volist name="super_list" id="data"}
+                                                            {if condition="$user.superid==$data.id"}
+                                                            <option value="{$data.id}" selected>{$data.realname}</option>
+                                                            {else /}
+                                                            <option value="{$data.id}">{$data.realname}</option>
+                                                            {/if}
+                                                            {/volist}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6"></div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label style="display: block"> 是否启用</label>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="status" value="1"
+                                                                   {$user.status==1?checked:''}>已启用
+                                                        </label>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="status" value="0"
+                                                                   {$user.status==1?'':checked}>未启用
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 ">
+                                            <div class="face">
+                                                <img src="{$user.face ? $user.face:$face}" id="face" width="80px"
+                                                     height="80px" class="img-circle" style="margin: 0 auto">
+                                                <a href="#" id="uploadface">自定义头像</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="add_user()">提交</button>
+            {include file="footer" /}
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="{$Think.config.web_res_root}js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="{$Think.config.web_res_root}js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="{$Think.config.web_res_root}js/jquery.metisMenu.js"></script>
+<!--Morris JS-->
+<script src="{$Think.config.web_res_root}js/morris/morris.js"></script>
+<!-- Custom Js -->
+<script src="{$Think.config.web_res_root}js/custom-scripts.js"></script>
+
+<!--uploadfile-->
+<script type="text/javascript" src="{$Think.config.web_res_root}/js/plupload/plupload.full.min.js"></script>
+
+<script type="text/javascript" src="{$Think.config.web_res_root}/js/jquery.uploadView.js"></script>
+<script type="text/javascript" src="{$Think.config.web_res_root}/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="{$Think.config.web_res_root}/js/layer/layer.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#group').change(function () {
+            $.ajax({
+                type: "post",
+                data: {
+                    id: $('#group option:selected').val()
+                },
+                url: "/index/system.user/getparentuser",
+                success: function (ret) {
+                    console.log(ret);
+                    if (ret.code == 0) {
+                        var html = "<option value=''>请选择</option>";
+                        $.each(ret.obj, function (i, val) {
+                            html += "<option value=" + val.id + ">" + val.realname + "</option>";
+                        });
+                        $('#super').html(html);
+                    }
+                },
+                error: function (msg) {
+
+                }
+            });
+        });
+    });
+    function add_user() {
+        var username = $('#username').val();
+        if (username == "") {
+            layer.alert('请输入用户名');
+            return;
+        }
+        var realname = $('#realname').val();
+        if (realname == "") {
+            layer.alert('请输入真实姓名');
+            return;
+        }
+        var ranking = $('#ranking').val();
+        if (ranking == "") {
+            layer.alert('请输入职位');
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            data: {
+                id: $("#user_id").val(),
+                username: username,
+                password: $("#password").val(),
+                realname: realname,
+                gender: $("input[name='gender']:checked").val(),
+                age: $("#age").val(),
+                phone: $("#phone").val(),
+                ranking: ranking,
+                status: $("input[name='status']:checked").val(),
+                deptid: $('#dept option:selected').val(),
+                groupid: $('#group option:selected').val(),
+                superid: $('#super option:selected').val(),
+                face: $("#face").attr('src')
+            },
+            url: "addUser",
+            success: function (msg) {
+                if (msg.code == 0) {
+                    layer.msg('保存用户成功');
+                    setTimeout(function () {
+                        window.history.back(-1);
+                    }, 1000);
+                } else {
+                    layer.alert(msg.msg);
+                }
+            }
+        });
+    }
+
+    var uploader = new plupload.Uploader({
+        browse_button: 'uploadface',
+        url: '/index/system.user/uploadface',
+        resize: {
+            width: 320,
+            height: 240,
+            quality: 90
+        },
+        filters: {
+            max_file_size: '10mb',
+            mime_types: [{
+                title: "Image files",
+                extensions: "jpg,gif,png"
+            }]
+        }
+    });
+    uploader.init();
+    uploader.bind('FilesAdded', function (uploader, files) {
+        uploader.start();
+    });
+    uploader.bind('FileUploaded', function (up, file, info) {
+        var obj = JSON.parse(info.response);
+        if (obj.code == 0) {
+            $('#face').attr('src', obj.obj);
+        }
+    });
+</script>
+</body>
+</html>

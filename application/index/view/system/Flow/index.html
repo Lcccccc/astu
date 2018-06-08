@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>议事通</title>
+    <!-- Bootstrap Styles-->
+    <link href="{$Think.config.web_res_root}css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="{$Think.config.web_res_root}css/font-awesome.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="{$Think.config.web_res_root}css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <!-- TABLE STYLES-->
+    <link href="{$Think.config.web_res_root}js/dataTables/dataTables.bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="wrapper">
+    {include file="top" /}
+    <!--/. NAV TOP  -->
+    {include file="left" /}
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">流程管理</h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <div class="row">
+                <div class="tab-pane fade active in" id="daiban">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Advanced Tables -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <button id="add" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#myModal"><i class="glyphicon glyphicon-plus"></i>新增流程
+                                            </button>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <input class="form-control" id="key" placeholder="流程名称">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" id="search" type="button"
+                                                            clickadd="true"><i
+                                                            class="glyphicon glyphicon-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-striped table-bordered table-hover"
+                                           id="dataTables-example">
+                                        <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>流程名称</th>
+                                            <th>对应模块</th>
+                                            <th>对应编号</th>
+                                            <th>步骤数</th>
+                                            <th width="10%">操作</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--End Advanced Tables -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+
+        </div>
+        {include file="footer" /}
+    </div>
+    <!-- /. PAGE INNER  -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">添加流程</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="form1">
+                        <input class="form-control" id="issue_id" type="hidden" value="{$issue.id}">
+                        <div class="form-group">
+                            <label>流程名称</label>
+                            <input class="form-control" id="name" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label>流程模块</label>
+                            <input class="form-control" id="model" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label>对应编号</label>
+                            <input class="form-control" id="code" type="text">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="add_flow()">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /. PAGE WRAPPER  -->
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="{$Think.config.web_res_root}js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="{$Think.config.web_res_root}js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="{$Think.config.web_res_root}js/jquery.metisMenu.js"></script>
+<!--Morris JS-->
+<script src="{$Think.config.web_res_root}js/morris/morris.js"></script>
+<!-- Custom Js -->
+<script src="{$Think.config.web_res_root}js/custom-scripts.js"></script>
+<!-- DATA TABLE SCRIPTS -->
+<script src="{$Think.config.web_res_root}js/dataTables/jquery.dataTables.js"></script>
+<script src="{$Think.config.web_res_root}js/dataTables/dataTables.bootstrap.js"></script>
+<!-- layer Js -->
+<script src="{$Think.config.web_res_root}js/layer/layer.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        refreshDataTable();
+    });
+
+    var refreshDataTable = function (e) {
+        var table = $('#dataTables-example').DataTable({
+            "sPaginationType": "full_numbers",
+            'language': {
+                "url": "{$Think.config.web_res_root}js/table-zh-cn.json"
+            },
+            'columns': [
+                {data: 'id'},
+                {data: 'name'},
+                {data: 'model'},
+                {data: 'code'},
+                {data: 'step_num'}
+            ],
+            columnDefs: [
+                {
+                    "targets": 5,//编辑
+                    "data": "0",//编辑
+                    "render": function (data, type, row) {
+                        return "<a id='editrow' href='add?id=" + row.id + "' class='btn btn-primary' type='button'><i class='fa fa-edit'>编辑</i></a>" +
+                            "<a id='delrow' class='btn btn-danger yst-margin-l-5' type='button' onclick='del(" + row.id + ")'><i class='fa fa-trash-o'>删除</i></a>";
+                    }
+                }
+            ],
+            "searching": false,
+            "bPaginite": true,
+            "bFilter": false,
+            "bInfo": true,
+            "bSort": false,
+            "processing": false,
+            "bServerSide": true,
+            "destroy": true,
+            "sAjaxSource": "getflowlist",//这个是请求的地址
+            "fnServerData": retrieveData// 获取数据的处理函数
+        });
+
+        function retrieveData(url, aoData, fnCallback) {
+            $.ajax({
+                url: url,//这个就是请求地址对应sAjaxSource
+                data: {
+                    "aoData": JSON.stringify(aoData),
+                    "key": $('#key').val()
+                },
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                success: function (result) {
+                    fnCallback(result);//把返回的数据传给这个方法就可以了,datatable会自动绑定数据的
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("status:" + XMLHttpRequest.status + ",readyState:" + XMLHttpRequest.readyState + ",textStatus:" + textStatus);
+                }
+            });
+        }
+    };
+
+    function add_flow() {
+        $.ajax({
+            type: "POST",
+            data: {
+                name: $("#name").val(),
+                model: $('#model').val(),
+                code: $('#code').val()
+            },
+            url: "saveFlow",
+            success: function (msg) {
+                alert(msg);
+                window.location.reload();
+            },
+            error: function (msg) {
+                alert(msg.msg);
+            }
+        });
+    }
+
+    function del(id) {
+        layer.confirm('您确定删除当前流程？', {
+            btn: ['确定', '取消'] //按钮
+        }, function () {
+            $.ajax({
+                type: "post",
+                data: {
+                    id: id
+                },
+                url: "deleteFlow",
+                success: function (ret) {
+                    if (ret['code'] == 0) {
+                        layer.msg('删除流程成功');
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);
+                    }
+                }
+            });
+        }, function () {
+
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+/*recruit.css*/
+*{
+	box-sizing: border-box;
+}
+.recruit-bg{
+	/*background: url(../images/recruit_bg.png) no-repeat center;	*/
+	background-size: cover;
+}
+.recruit-content{
+	padding:100px 0;
+	background-color: #F2F2F2;
+}
+.recruit-padding{
+	padding:50px 15px;
+}
+.recruit-padding h1{
+	margin:2rem 0;
+	font-size: 60px;
+}
+.recruit-padding p{
+	line-height: 2rem;
+}
+.recruit-content .row>div{
+	padding: 50px 50px;
+}
+.recruit-content .recruit-job:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.recruit-content .recruit-job{
+	padding: 1rem 0;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #CECECE;
+}
+.recruit-content .recruit-job>div{
+	margin-left: 1rem;
+}
+.recruit-content .recruit-job h4{
+	margin:0;
+	line-height: 3rem;
+	font-size: 22px;
+	font-weight: bold;
+}
+.recruit-content .recruit-job p{
+	color: #CECECE;
+	font-size: 12px;
+}
+.post-demand{
+	padding:25px 0;
+}
+.post-demand p{
+	line-height: 3rem;
+}
+footer{
+	margin-top: 0;
+}
+.row .post-demand .form-horizontal .form-group{
+	margin:0;
+	margin-top: 32px;
+}
+.text-left.control-label{
+	text-align: left;
+}
+.form-group>label{
+	padding:0;
+	color: #989898;
+}
+.button{
+	color: white;
+	background-color: #fa6c16;
+	border: none;
+	padding: 6px 10px;
+	border-radius: 2px;
+}
+.send-button{
+	display: none;
+}
+.send-button.show{
+	display: inline-block;
+}
+.completed-button{
+	background-color: #b3b3b3;
+}
+/* @media screen and(max-width:1140px)and(min-width:720px){
+	button[button]{
+		display: block;
+	}
+} */
+/*超小设备手机*/
+@media (max-width: 768px) {
+	
+}
+/*小型设备平板电脑,最大宽度750px*/
+@media (min-width: 768px) {
+	
+}
+/*中型设备台式电脑,最大宽度970px*/
+@media (min-width: 992px){
+	
+}
+/*大型设备台式电脑,最大宽度1170px大屏幕*/
+@media (min-width: 1200px){
+	
+}

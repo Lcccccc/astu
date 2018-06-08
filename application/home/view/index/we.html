@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>艾斯图——我们</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{$Think.config.web_res_root}/astu/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="{$Think.config.web_res_root}/astu/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="{$Think.config.web_res_root}/astu/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="{$Think.config.web_res_root}/astu/css/animate.min.css" />
+		<link href="{$Think.config.web_res_root}/astu/css/public.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{$Think.config.web_res_root}/astu/css/we.css" rel="stylesheet">
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+  	<!--导航-->
+	  <nav class="navbar navbar-default" style="padding-top:20px; padding-bottom:20px;">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/home/index/index">
+                    <img id="logoimg" src="{$Think.config.web_res_root}/astu/images/logo.png" alt="">
+                    <span>互联网+全域旅游消费升级</span>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class=""><a href="/home/index/index">首页</a></li>
+                    <!--<li class=""><a href="/home/index/tourismindustry">文旅产业</a></li>-->
+                    <li class=""><a href="/home/index/services">服务</a></li>
+                    <li class=""><a href="/home/index/cases.html">案例</a></li>
+                    <li class=""><a href="#"  style="color: orange">我们</a></li>
+                    <li class=""><a href="/home/index/talking.html">白话</a></li>
+                    <li class=""><a href="/home/index/cooperation.html">合作</a></li>
+                    <li class=""><a href="/home/index/recruit.html">招聘</a></li>
+                    <li class="">
+                        <a id="weilogo" href="{$Think.config.web_res_root}/astu/images/astucode.jpg" class="qq"><img id="wepng" src="{$Think.config.web_res_root}/astu/images/weChat.png" target="_blank" alt=""></a>
+                    </li>
+                    <li class="">
+                        <a href="http://wpa.qq.com/msgrd?v=3&uin=3446235353&site=qq&menu=yes" class="qq"><img id="qqpng" src="{$Think.config.web_res_root}/astu/images/qq.png" target="_blank" alt=""></a>
+						<!--<a id="weilogo" href="{$Think.config.web_res_root}/astu/images/astucode.jpg" class="qq"><img id="wepng" src="{$Think.config.web_res_root}/astu/images/weChat.png" target="_blank" alt=""></a>-->
+					</li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+	<div class="public-bg we-bg">
+		<!--<div>-->
+			<!--<h1>艾斯图，打造互联网服务商第一品牌</h1>-->
+			<!--<h1>Astu,the Internet service provider to build the first brand</h1>-->
+		<!--</div>-->
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			{if $count_banner >1}
+			<ol class="carousel-indicators">
+				{for start="0" end="$count_banner"}
+				{if $i == 0}
+				<li data-target="#myCarousel" data-slide-to="{$i}" class="active"></li>
+				{else /}
+				<li data-target="#myCarousel" data-slide-to="{$i}"></li>
+				{/if}
+				{/for}
+			</ol>
+			{/if}
+			<div class="carousel-inner" role="listbox">
+				{volist name="banner_pic" id="data"  key="k"}
+				{if $k == 1}
+				<div class="item active">
+					{else /}
+					<div class="item">
+						{/if}
+						<img class="first-slide" src="{$data['path']}" alt="First slide" style="width: 100%">
+						<div class="container">
+							<div class="carousel-caption" style="text-shadow:none;background-image: url('{$data.centerPath}');background-repeat:no-repeat;">
+								<h1>{$data.title}</h1>
+								<h2>{$data.title2}</h2>
+								<p>{$data.brief}</p>
+							</div>
+						</div>
+					</div>
+					{/volist}
+				</div>
+				<a class="left carousel-control" href="{$Think.config.web_res_root}/astu/#myCarousel" role="button" data-slide="prev">
+					<!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control" href="{$Think.config.web_res_root}/astu/#myCarousel" role="button" data-slide="next">
+					<!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
+					<span class="sr-only">Next</span>
+				</a>
+
+		</div>
+			
+		<!--我们内容-->
+		<div class="container">
+			<div class="text-center public-title margin-bottom">
+				<h2>COMPANY <span>PROFILE</span></h2>
+				<div></div>
+				<h3>公司简介</h3>
+			</div>
+			<div class="row we-img text-center">
+				<div class="col-sm-12 col-md-4 col-lg-4">
+					<img src="{$Think.config.web_res_root}/astu/images/we_1.png" alt="" />
+				</div>
+				<div class="col-sm-12 col-md-4 col-lg-4">
+					<img src="{$Think.config.web_res_root}/astu/images/we_2.png" alt="" />
+				</div>
+				<div class="col-sm-12 col-md-4 col-lg-4">
+					<img src="{$Think.config.web_res_root}/astu/images/we_3.png" alt="" />
+				</div>
+			</div>
+			<div class="row we-text">
+				<p>深圳市艾斯图网络科技有限公司成立于2012年，是一家专为文旅行业的特色小镇、民宿运营提供过夜经济消费升级的互联网公司。通过对特色小镇的整体规划设计、IP打造、开发运营、品牌招商及营销推广，配合全域旅游的相关政策为目的地带来人流量、提升经济收入、沉淀大数据以及传播社会效应。</p>
+                <p>目前，艾斯图在深圳、长沙、江西等多个省市设有分公司，团队成员来自于国内一流的互联网和旅游服务公司。长期与国家级策划团队“子仪策划”、“盛东传媒”保持紧密合作，并与湖南广电共同打造“芒果小镇”重量级文旅IP。</p>
+                <p>艾斯图与深圳市政府各部门合作紧密，长期保持合作关系的包含深圳市土地房产交易中心、深圳市文化产权交易所、深圳市大鹏新区政府、深圳广电集团、深圳市罗湖区投资推广局、深圳市罗湖区电子政务网等部门。艾斯图还与国内众多知名企业达成战略合作，包括腾讯公司、合生元集团、海航集团、招商银行、盐田港集团、腾邦集团、分期乐、万科集团、华侨城集团、康辉旅游、邦德教育、华夏金融、招联金融等等。</p>
+			</div>
+    </div>
+    <div class="we-bg2">
+    	<div class="container">
+    		<div class="text-center public-title margin-bottom">
+					<h2>COMPANY <span>CULTURE</span></h2>
+					<div></div>
+					<h3>公司文化</h3>
+				</div>
+				<div class="we-text2 text-center">
+					<p>我们注重人的提升，公司是社会现象的缩影，面对多元化性格的成年人管理，我们始终强化学习，学习沟通、学习相处、学习专业技能、学习逻辑思维。</p>
+					<p>在艾斯图，每一位进来的员工都会接触一个即将由自己负责的项目，通过导师行动，培养他们从接触客户如何谈判、立项、调研、提案到项目实施阶段及与资本接轨。让每一位员工都能成为独立合伙人。</p>
+					<p>去中间化的沟通方式与敏捷式办公实现较高的工作效率，标准化，流程化管理模式，让每个员工入门即上手，上手就能产生生产价值从而获得巨大的成就感，目前，每一位员工实现项目盈利都能成为股东。</p>
+					<p>我们是全国首家新型项目孵化生态的服务类公司，不仅孵化了上百家创业公司及企业，同事还从内部员工开始进行孵化教育的培养，在福利上，我们不仅享有国家五险一金节假休息，独有的自创福利也是深得员工喜爱，如：每月将额外福利假期、电影票、下午茶等通过互动抽奖的方式奖励给幸运的员工，并定义他的幸运日。</p>
+					<p>每个月我们都会有生日会，全公司一起为同月生日的同事共同庆生，让同月生日的人一起互动抽取礼品。</p>
+					<p>对于离职员工，我们成立了添才猫基俱乐部，拥有添才猫基金，专为离开的同事在其创业后遇到的好项目提供项目孵化的服务及资本接入。</p>
+					<p>艾斯图致力为员工打造一个安居乐业的办公场所，拥有超绿色的办公环境，提供娱乐室，母婴接待室等具有人文特色的办公服务，为员工安居乐业提供强有力的支持。</p>
+					<p>一切以人为核心，因为有爱，才能传递文化。</p>
+				</div>
+    	</div>  	
+    </div>
+		<div class="we-ul container">
+			<div class="text-center public-title margin-bottom">
+				<h2>COMPANY <span>PHILOSOPHY</span></h2>
+				<div></div>
+				<h3>公司理念</h3>
+			</div>
+			<div class="row">
+				<dl class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+					<dt>
+						<img src="{$Think.config.web_res_root}/astu/images/we_ico_1.png" alt="" />
+					</dt>
+					<dd>
+						<h4>发展理念</h4>
+						<!--<p>做互联网营销行业原创先锋。</p>-->
+						<p>做文旅行业原创先锋。</p>
+					</dd>
+				</dl>
+				<dl class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+					<dt>
+						<img src="{$Think.config.web_res_root}/astu/images/we_ico_2.png" alt="" />
+					</dt>
+					<dd>
+						<h4>人才理念</h4>
+						<p>人有人的用处，培养即成长。</p>
+					</dd>
+				</dl>
+				<dl class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+					<dt>
+						<img src="{$Think.config.web_res_root}/astu/images/we_ico_3.png" alt="" />
+					</dt>
+					<dd>
+						<h4>为人理念</h4>
+						<p>人人都是合伙人，赋予责任使命。</p>
+					</dd>
+				</dl>
+			</div>
+			<div class="row">
+				<dl class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+					<dt>
+						<img src="{$Think.config.web_res_root}/astu/images/we_ico_4.png" alt="" />
+					</dt>
+					<dd>
+						<h4>技术理念</h4>
+						<p>走在互联网的最前沿。</p>
+					</dd>
+				</dl>
+				<dl class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+					<dt>
+						<img src="{$Think.config.web_res_root}/astu/images/we_ico_5.png" alt="" />
+					</dt>
+					<dd>
+						<h4>合作理念</h4>
+						<p>诚信为首，行善为终。</p>
+					</dd>
+				</dl>
+				<dl class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+					<dt>
+						<img src="{$Think.config.web_res_root}/astu/images/we_ico_6.png" alt="" />
+					</dt>
+					<dd>
+						<h4>生存理念</h4>
+						<p>水往下流，人往上走，充满狼性。</p>
+					</dd>
+				</dl>
+			</div>
+			<div class="row">
+				<dl class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+					<dt>
+						<img src="{$Think.config.web_res_root}/astu/images/we_ico_7.png" alt="" />
+					</dt>
+					<dd>
+						<h4>服务理念</h4>
+						<p>一对一精准极致服务。</p>
+					</dd>
+				</dl>
+				<dl class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+					<dt>
+						<img src="{$Think.config.web_res_root}/astu/images/we_ico_8.png" alt="" />
+					</dt>
+					<dd>
+						<h4>管理理念</h4>
+						<p>标准化流程化打造数字管理特色。</p>
+					</dd>
+				</dl>
+				<dl class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+					<dt>
+						<img src="{$Think.config.web_res_root}/astu/images/we_ico_9.png" alt="" />
+					</dt>
+					<dd>
+						<h4>使命</h4>
+						<!--<p>源于营销，深耕文化；面向世界，呈现中华！</p>-->
+						<p>源于旅游，深耕文化；面向世界，呈现中华！</p>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="we-mile">
+			<div class="container">
+				<div class="text-center public-title margin-bottom">
+					<h2><span>MILEPOST</span></h2>
+					<div></div>
+					<h3>里程碑</h3>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 mile-date">
+						<h3>2012-12-21</h3>
+					</div>
+					<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mile-date-intro">
+						<div class="mile-circle"></div>
+						<p>深圳市艾斯图网络科技有限公司成立，开始经营男装电商并在天猫上开店，做到月均销售额30万，经营了半年后，也获得了初创公司的第一桶金。</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 mile-date">
+						<h3>2014-6-1</h3>
+					</div>
+					<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mile-date-intro">
+						<div class="mile-circle"></div>
+						<p>电商开始大规模进入商战阶段，艾斯图也没有幸免为付费流量买单的惨剧。经过团队商量，根据原创团队在互联网设计、技术研发、业务拓展方面的专业能力，开始专注于做传统企业及创新企业的外包服务。并成为了“招商银行”“罗湖区投资推广局”“合生元”“盐田港”“腾讯”等知名企业的服务商。</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 mile-date">
+						<h3>2014-9-1</h3>
+					</div>
+					<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mile-date-intro">
+						<div class="mile-circle"></div>
+							<p>在外包服务的开展期间，响应“罗湖区投资推广局”的号召，为推动“水贝珠宝产业基地”的整体转型至互联网，搭建了“水贝优品”网络平台，顺利将传统珠宝企业与互联网的快速接轨。</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 mile-date">
+						<h3>2015-5-1</h3>
+					</div>
+					<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mile-date-intro">
+						<div class="mile-circle"></div>
+						<p class="margin-bottom">公司发展至上百人的规模，专项团队，艾斯图开始拥抱金融，将原有成熟的外包技术与金融合并，塑造了现在的“首家新型项目孵化生态服务公司”，孵化了“添才猫”“SOBIG”“微享”“趣住”“爱游爱鹏”“快递金”“辣三观”等一系列具有市场规模、变现能力跨行业项目。</p>
+						<p class="margin-bottom">同时在影视领域也与腾讯欢乐斗地主签署了游戏综艺节目IP的合作，与深圳广电集团也有影视类广宣合作。</p>
+						<p>目前涉足的投资领域，在孵化项目的同时以技术、资源、运营投资的形式参股“爱游大鹏”“爱天使”“趣住”“联创用车”等传统转型互联网的好项目，并在项目成长期引入资本，帮助项目市场规模化。</p>
+					</div>
+				</div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 mile-date">
+                        <h3>2016-3</h3>
+                    </div>
+                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mile-date-intro">
+                        <div class="mile-circle"></div>
+                        <p>艾斯图核心业务升级，深挖文旅行业策划、运营、咨询、设计，及提供专业的互联网+服务与金融服务。着力“特色小镇打造”文旅领域。</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 mile-date">
+                        <h3>2016-6</h3>
+                    </div>
+                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mile-date-intro">
+                        <div class="mile-circle"></div>
+                        <p>与大鹏新区签署整体规划运营协议，正式走进文旅领域。</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 mile-date">
+                        <h3>2016-12</h3>
+                    </div>
+                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mile-date-intro">
+                        <div class="mile-circle"></div>
+                        <p>与贵州西江千户苗寨景区签署战略合作协议，建设智慧旅游新苗寨。</p>
+                    </div>
+                </div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 mile-date">
+						<h3>2017-1-21</h3>
+					</div>
+					<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mile-date-intro">
+						<div class="mile-circle"></div>
+						<p>
+							成立“添才猫筑梦基金”<br />
+							专为离开的同事在其创业后遇到好项目提供项目孵化的服务及资本接入。
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 mile-date">
+						<h3>2017-3</h3>
+					</div>
+					<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mile-date-intro">
+						<div class="mile-circle"></div>
+                        <!--<p>公司大力发展整体互联网营销业务,与国内多家大型产业项目合作,与深圳大鹏新区、贵州西江千户苗寨、浏阳大围山等多个国家5A、4A级景区达成战略合作，搭建起营销平台，解决旅游行业拓客难、营销难、融资难的需求痛点。</p>-->
+						<p>公司发轫旅游行业，着力智慧旅游。与深圳大鹏新区、贵州西江千户苗寨、浏阳大围山等多个国家5A、4A级景区达成战略合作，搭建起了旅游分销营销平台，解决旅行行业拓客难、营销难、融资难得需求痛点。</p>
+					</div>
+				</div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 mile-date">
+                        <h3>2017-6</h3>
+                    </div>
+                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mile-date-intro">
+                        <div class="mile-circle"></div>
+                        <p>深圳东渔社区整体规划项目落地，成功打造“东渔之歌”旅游新名片。</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 mile-date">
+                        <h3>2017-9</h3>
+                    </div>
+                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mile-date-intro">
+                        <div class="mile-circle"></div>
+                        <p>艾斯图实体业务——“串演”湘西烧烤店项目落地。</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 mile-date">
+                        <h3>2017-12</h3>
+                    </div>
+                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mile-date-intro">
+                        <div class="mile-circle"></div>
+                        <p>即将与湖南浏阳大围山景区签署民宿运营协议。</p>
+                    </div>
+                </div>
+
+
+
+
+
+			</div>
+		</div>	
+		<!-- FOOTER -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+					<div class="footer-left">
+						<h1>ASTU</h1>
+						<p>艾斯图为提供互联网原创服务而生</p>
+						<p>Born to provide Internet original services</p>
+					</div>
+					<div class="footer-left">
+						<p>深圳总部</p>
+						<p>公司地址：深圳市南山区科技中二路</p>
+						<p>软件园一期一栋502</p>
+						<p>公司电话：0755-26038548</p>
+					</div>
+					<div class="footer-left">
+						<p>湖南分公司</p>
+						<p>公司地址：长沙市雨花区迎新路499号</p><p>御溪国际3栋2233室</p>
+						<p>公司电话：18152642640</p>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8 footer-right">
+					<div class="row">
+						<div class="col-md-12 col-lg-6" style="padding: 0;">
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+								<h4>白 话</h4>
+								<ul>
+									<li><a href="/home/index/talking?tree=disclose">&gt; 爆料</a></li>
+									<li><a href="/home/index/talking?tree=red-museum">&gt; 红人馆</a></li>
+									<li><a href="/home/index/talking?tree=technology">&gt; 技术贴</a></li>
+									<li><a href="/home/index/talking?tree=talking-design">&gt; 活动</a></li>
+								</ul>
+							</div>
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+								<h4>关于我们</h4>
+								<ul>
+									<li><a href="/home/index/we.html">&gt; 公司简介</a></li>
+									<li><a href="/home/index/cooperation.html">&gt; 联系我们</a></li>
+									<li><a href="/home/index/recruit.html">&gt; 社会招聘</a></li>
+								</ul>
+							</div>
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+								<h4>导 航</h4>
+								<ul>
+									<li><a href="/home/index/services.html">&gt; 服务</a></li>
+									<li><a href="/home/index/cases.html">&gt; 案例</a></li>
+									<li><a href="/home/index/talking.html">&gt; 白话</a></li>
+									<li><a href="/home/index/we.html">&gt; 关于</a></li>
+									<li><a href="/home/index/cooperation.html">&gt; 合作</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-12 col-lg-6 code">
+							<h4>关注公众号</h4>
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+									<img class="" src="{$Think.config.web_res_root}/astu/images/astucode.jpg" width="100" height="100">
+								</div>
+							</div>
+							<p>关注即可获得更多惊喜，随时欢迎投稿，您的白话将会成为我们的头条哦！</p>
+						</div>
+					</div>
+					<div class="row partner">
+						<h4 class="col-lg-12">合作伙伴</h4>
+						<div class="col-xs-6 col-md-4 col-lg-2">
+							<img src="{$Think.config.web_res_root}/astu/images/partner_1.png" width="100" height="40">
+						</div>
+						<div class="col-xs-6 col-md-4 col-lg-2">
+							<img src="{$Think.config.web_res_root}/astu/images/partner_2.png" width="100" height="40">
+						</div>
+						<div class="col-xs-6 col-md-4 col-lg-2">
+							<img src="{$Think.config.web_res_root}/astu/images/partner_3.png" width="100" height="40">
+						</div>
+						<div class="col-xs-6 col-md-4 col-lg-2">
+							<img src="{$Think.config.web_res_root}/astu/images/partner_4.png" width="100" height="40">
+						</div>
+						<div class="col-xs-6 col-md-4 col-lg-2">
+							<img src="{$Think.config.web_res_root}/astu/images/partner_5.png" width="100" height="40">
+						</div>
+						<div class="col-xs-6 col-md-4 col-lg-2">
+							<img src="{$Think.config.web_res_root}/astu/images/partner_6.png" width="100" height="40">
+						</div>
+						<div class="col-xs-6 col-md-4 col-lg-2">
+							<img src="{$Think.config.web_res_root}/astu/images/partner_7.png" width="100" height="40">
+						</div>
+						<div class="col-xs-6 col-md-4 col-lg-2">
+							<img src="{$Think.config.web_res_root}/astu/images/partner_8.png" width="100" height="40">
+						</div>
+						<div class="col-xs-6 col-md-4 col-lg-2">
+							<img src="{$Think.config.web_res_root}/astu/images/partner_9.png" width="100" height="40">
+						</div>
+						<div class="col-xs-6 col-md-4 col-lg-2">
+							<img src="{$Think.config.web_res_root}/astu/images/partner_10.png" width="100" height="40">
+						</div>
+						<div class="col-xs-6 col-md-4 col-lg-2">
+							<img src="{$Think.config.web_res_root}/astu/images/partner_11.png" width="100" height="40">
+						</div>
+						<div class="col-xs-6 col-md-4 col-lg-2">
+							<img src="{$Think.config.web_res_root}/astu/images/partner_12.png" width="100" height="40">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="copy">
+			<div class="container">
+				<p>Copyright &copy; 2017 Shenzhen Astu.com All rights Reserved 粤ICP备15043328号-1</p>
+			</div>
+		</div>
+	</footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{$Think.config.web_res_root}/astu/js/jquery.min.js"></script>
+    <script src="{$Think.config.web_res_root}/astu/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="{$Think.config.web_res_root}/astu/js/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{$Think.config.web_res_root}/astu/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="{$Think.config.web_res_root}/astu/js/main.js"></script>
+  </body>
+</html>

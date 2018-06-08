@@ -1,0 +1,481 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+
+
+
+
+/*轮播当前页动画效果*/
+@keyframes moveAni{
+    0%{
+        left:0;
+    }
+    25%{
+        left:-5%;
+    }
+    75%{
+        left:5%;
+    }
+    100%{
+        left:0;
+    }
+}
+@-webkit-keyframes moveAni{
+    0%{
+        left:0;
+    }
+    25%{
+        left:-5%;
+    }
+    75%{
+        left:5%;
+    }
+    100%{
+        left:0;
+    }
+}
+.moveAniAct{
+    -webkit-animation: moveAni 10s linear infinite;
+    -moz-animation: moveAni 10s linear infinite;
+    -o-animation: moveAni 10s linear infinite;
+    animation: moveAni 10s linear infinite;
+}
+
+
+
+
+/* Padding below the footer and lighter body text */
+.btn-orange{
+	color: #FA6C17;
+	border-color: #FA6C17;
+}
+.btn-orange:hover{
+	color: #fff;
+	background-color: #FA6C17;
+}
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+
+.navbar {
+	margin-bottom: 0;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  height: 500px;
+  margin-bottom: 120px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+  top:30%;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+    width:100%;
+  height: 500px;
+  background-color: #777;
+
+    overflow:hidden;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+/*三个图片*/
+.intro dl dd>div{
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+}
+.intro img{
+	width: 100%;
+}
+.intro dl dd>div span{
+	display: inline-block;
+	padding:2px 5px;
+	margin-bottom: .5rem;
+	font-size: 1.8rem;
+}
+.orangered{
+	color: #fff;
+	background-color: #FA6C17;
+}
+.intro dl dd>p{
+	font-size: 1.5rem;
+	color: #cacaca;
+}.intro dl dd p a{
+	font-size: 1.4rem;
+}
+.marketing .intro .col-lg-4 {
+  margin-bottom: 20px;
+}
+.marketing .intro p {
+  margin-bottom: .5rem;
+}
+dl dd .public-btn a {
+	padding:10px 20px !important;
+}
+/*about*/
+.about{
+	padding:7rem 0;
+	background: url(../images/about.png) no-repeat center;
+}
+.about .public-title div{
+	border-color: #fff;
+}
+.about p{
+	line-height: 2rem;
+}
+/*case*/
+.case .text-center{
+	padding: 0 2px;
+}
+.case dl{
+	margin-left:auto;
+	margin-right: auto;
+}
+.case dl dt{
+	position: relative;
+}
+.case dl dt img{
+	width: 100%;
+}
+.case dl dt>div.case-bg{
+	position: absolute;
+	top:0;
+	left:0;
+	right: 0;
+	bottom: 0;
+	background-color:rgba(250,108,23,.7);
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.case dl dt>div.case-bg .circle{
+	width: 50px;
+	height:50px;
+	border-radius: 50%;
+	opacity: 1;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.case dl dt>div.case-bg .circle>span{
+	color:#FA6C17;
+}
+.case dl dd{
+	font-weight: bold;
+	font-size: .9rem;
+	margin:1.5rem 0;
+}
+.case dl dd .btn{
+	font-size: .9rem;
+}
+/*Team*/
+.team{
+	padding: 50px 0;
+	background: url(../images/team_back.png) no-repeat center;
+	background-size: cover;
+}
+.team .public-title h5{
+	color: #fff;
+}
+.team .public-title div {
+    border-color: #fff;
+}
+.team dl{
+	width: 260px;
+	margin:0 auto;
+	margin-bottom: 20px;
+}
+.team dl dd{
+	background-color: #fff;
+}
+.team dl dd h4{
+	margin: 0;
+	color: #000;
+	padding-top: 20px;
+	font-family: "微软雅黑";
+	font-weight: bold;
+}
+.team dl dd p{
+	padding:10px 0;
+	color:#666666;
+	/*font-weight: bold;*/
+}
+.team dl dd p>span{
+	color: #FA6C17;
+}
+/*talking*/
+.talking{
+	padding-top: 3rem;
+}
+.talking-title{
+	margin-bottom: 2rem;
+	padding-bottom: .5rem;
+	overflow: hidden;
+	/* position: relative; */
+	/* border-bottom: 1px solid #ccc; */
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.divide{
+	content:'';
+	display: block;
+	height: 1px;
+	width:100%;
+	background-color: #efefef;
+}
+/*.talking-title>span{
+	position: absolute;
+	left: 0;
+	background-color: #fff;
+} */
+.talking-title b{
+	font-size: 18px;
+	/* background-color: white; */
+	white-space: nowrap;
+}
+.talking-title span{
+	display: inline-block;
+	margin: 0 .5rem;
+	font-size: 10px;
+	color: #ABABAB;
+	white-space: nowrap;
+	/* background-color: white; */
+	/* z-index: 10; */
+}
+.talking dl{
+	margin-bottom: 4rem;
+}
+.talking dl dt img{
+	width: 100%;
+    /*height: 270px;*/
+}
+.talking dl dd h4{
+	margin-top: 0;
+	font-weight: bold;
+	margin-bottom: 2rem;
+	padding:10px 15px;
+}
+.talking dl dd p:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.talking dl dd a.btn{
+	width:150px;
+	line-height: 1rem;
+	margin-top:2rem;
+	margin-right: .5rem;
+}
+.talking dl dd span.date{
+	background: url(../images/date_ico.png) no-repeat left;
+}
+.talking dl dd span.concern{
+	background: url(../images/concern_ico.png) no-repeat left;
+}
+.talking dl dd i.zan{
+	background: url(../images/zan_ico.png) no-repeat center;
+}
+.talking dl dd i.zan-tab{
+	background: url(../images/zan_tab_ico.png) no-repeat center;
+}
+.talking dl dd i.share{
+	background: url(../images/share_ico.png) no-repeat center;
+}
+.talking dl dd span.pull-left{
+	margin-right: 2rem;
+	padding-left: 2.5rem;
+}
+.talking dl dd i.pull-right{
+	width:16px;
+	height: 16px;
+	margin-left: 2rem;
+}
+.talking .activity .talking-title{
+	margin-bottom: 25px;
+	margin-left: 0;
+	margin-right: 0;
+}
+.talking .activity dl{
+	margin-bottom: 2rem;
+}
+.talking .activity .reds{
+	margin-bottom: 1.5rem;
+}
+.talking dl dd a.btn-info{
+	width: 100%;
+	line-height: 3rem;
+	margin-right: 0;
+	margin-top:3rem;
+	font-size: 2.5rem;
+	background-color: #00a9ec;
+}
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+/* fen xiang  */
+#bdshare>a{
+	height: 22px;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+@media (max-width: 768px) {
+	.intro{
+		text-align: center;
+	}
+	/* Carousel base class */
+	/* .carousel {
+	  height: 300px;
+	} */
+	/* Declare heights because of positioning of img element */
+	/* .carousel .item {
+	  height: 300px;
+	} */
+	/* .carousel-inner > .item > img {
+
+	  height: 300px;
+	} */
+	.carousel-caption{
+		top:23%;
+	}
+	.intro{
+		text-align: center;
+	}
+	.intro img{
+		width: 100%;
+	}
+	.case dl{
+		width: 285px;
+	}
+	.talking dl dt img {
+	    width: 100%;
+	    height: 100%;
+	}
+}
+
+@media (min-width: 768px) {
+	.intro{
+		text-align: center;
+	}
+	/* Bump up size of carousel content */
+	.carousel-caption p {
+	    margin-bottom: 20px;
+	    font-size: 21px;
+	    line-height: 1.4;
+	}
+	.featurette-heading {
+	    font-size: 50px;
+	}
+	/* .carousel {
+		height: 500px;
+	}
+	.carousel .item {
+	  height: 500px;
+	}
+	.carousel-inner > .item > img {
+	  height: 500px;
+	} */
+	.carousel-caption{
+		top:30%;
+	}
+	.intro{
+		text-align: center;
+	}
+	.intro img{
+		width: 350px;
+	}
+	.case dl{
+		width: auto;
+	}
+	.talking .activity .reds{
+		margin-bottom: 25px;
+	}
+}
+
+@media (min-width: 992px){
+	.intro{
+		text-align: left;
+	}
+	.intro img{
+		width: 100%;
+	}
+	.case dl{
+		width: 285px;
+	}
+	.talking dl dd a.btn-orange{
+		width: 125px;
+	}
+	.talking dl dd i.pull-right{
+		margin-left: 1rem;
+	}
+	.talking .activity .reds{
+		margin-bottom: 1.8rem;
+	}
+}
+@media (min-width: 1200px){
+	/* .carousel {
+		height: 974px;
+	}
+	.carousel .item {
+	  height: 974px;
+	}
+	.carousel-inner > .item > img {
+	  height: 974px;
+	} */
+	.intro{
+		text-align: left;
+	}
+	.intro img{
+		width: 100%;
+	}
+	.case dl dt img{
+		width: 100%;
+	}
+	.case dl{
+		width: auto;
+	}
+	.talking dl dd a.btn-orange{
+		width: 150px;
+	}
+	.talking dl dd i.pull-right{
+		margin-left: 2rem;
+	}
+	.talking .activity .reds{
+		margin-bottom: 1.5rem;
+	}
+}

@@ -1,0 +1,58 @@
+<nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    {volist name="menu" id="data"}
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap"></i>{$data.name}<span class="fa arrow"></span></a>
+                            {if condition="count($data['child']) >0"}
+                                <ul class="nav nav-second-level">
+                                {volist name="data['child']" id="child_data"}
+                                    <li>
+                                        <a href={:url($child_data['url'])}><i class="fa fa-table"></i> {$child_data['name']}</a>
+                                        {if condition="count($child_data['child']) >0"}
+                                        <ul class="nav nav-third-level">
+                                            {volist name="child_data['child']" id="third_child_data"}
+                                            <li>
+                                                <a href={:url($third_child_data['url'])}><i class="fa fa-table"></i> {$third_child_data['name']}</a>
+                                            </li>
+                                            {/volist}
+                                        </ul>
+                                        {/if}
+                                    </li>
+                                {/volist}
+                                </ul>
+                            {/if}
+                        </li>
+                    {/volist}
+                </ul>
+            </div>
+        </nav>
+<script src="{$Think.config.web_res_root}js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+//    var html = '';
+//    $(document).ready(function () {
+//        $.ajax({
+//            type: "GET",
+//            url: "/index/system.menu/getnav",
+//            success: function (ret) {
+//                if (ret['code'] == 0) {
+//                    html = '';
+//                    setNav(ret['obj']);
+//                    $('#main-menu').html(html);
+//                    console.log(html);
+//                }
+//            }
+//        });
+//    });
+
+//    function setNav(obj) {
+//        $.each(obj, function (i, val) {
+//            html += "<li><a href='http://" + window.location.host + '/' + val.url + "'><i class='" + val.css + "'></i>" + val.name + "<span class='fa arrow'></span></a>";
+//            if (val.child.length > 0) {
+//                html += "<ul class='nav nav-second-level'>";
+//                setNav(val.child);
+//                html += "</ul>";
+//            }
+//        });
+//    }
+</script>

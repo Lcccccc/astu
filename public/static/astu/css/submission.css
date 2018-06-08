@@ -1,0 +1,86 @@
+.talking-bg{
+	background: url(../images/talking_bg.png) no-repeat center;	
+	background-size: cover;
+}
+.require{
+	margin-top: 100px;
+	padding: 50px 0; 
+	color: black !important;
+	background-color: white;
+}
+.require .public-title>div{
+	border-color: black;
+}
+.require .row .margin-left{
+	color: #9D9D9D;
+	border-radius: 5px;
+	margin-bottom: 2rem;
+	margin-left: 1rem;
+	padding: 3px;
+    background-color: white;
+    border: 1px solid #dfdfdf;
+}
+.require .row .margin-left:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.require .row .margin-left label{
+	width: auto;
+	float: left;
+	line-height: 2rem;
+}
+.require .row .margin-left input,.require .row .margin-left textarea{
+	width: 75%;
+	float: left;
+}
+.require .row input,.require .row textarea{
+	border: none;
+	outline: none;
+	background-color: white;
+	resize: none;
+}
+.require .row input:focus,.require .row textarea:focus{
+	border: none;
+	outline: none;
+}
+.require .btn{
+	width:100%;
+	margin-top: 3rem;
+	line-height: 3rem;
+	font-size: 1.5rem;
+	color: #fff;
+	background-color: #FA6C17;
+}
+.require .btn:hover{
+	background-color: #E56215;
+}
+.require .btn:focus{
+	outline: none;
+}
+.replacePhoto{
+    width: 231px;
+    height: 136px;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.replacePhoto>img{
+    background: no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+}
+
+select.selectName{
+	/* width: 90%; */
+	border:none;
+	/* appearance: none; */
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
+	padding-right: 15px;
+	float: right;
+	right: 0;
+}

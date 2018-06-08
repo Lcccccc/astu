@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>议事通</title>
+    <!-- Bootstrap Styles-->
+    <link href="{$Think.config.web_res_root}css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="{$Think.config.web_res_root}css/font-awesome.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="{$Think.config.web_res_root}css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <!--uploadfile-->
+    <link rel="stylesheet" href="{$Think.config.web_res_root}js/uploadfile/css/zyUpload.css" type="text/css">
+
+    <!--DATE PICKER-->
+    <link href="{$Think.config.web_res_root}css/pikaday.css" rel="stylesheet"/>
+    <link href="{$Think.config.web_res_root}css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">-->
+    <![endif]-->
+
+</head>
+
+<body>
+<div id="wrapper">
+    {include file="top" /}
+    <!--/. NAV TOP  -->
+    {include file="left" /}
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">
+                        添加会议
+                    </h1>
+                </div>
+
+                <div class="col-md-12">
+                    <form role="form" id="form1">
+                        <input class="form-control" id="id" type="hidden" value="{$meeting.id}">
+                        <div class="form-group">
+                            <label>会议类型</label>
+                            <select class="form-control" id="meeting_group">
+                                <option value=''>请选择会议类型</option>
+                                {volist name="meeting_group_list" id="data"}
+                                <option value="{$data.join_id}">{$data.name}</option>
+                                {/volist}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>会议名称</label>
+                            <input class="form-control" id="name" type="text" value="{$meeting.title}">
+                        </div>
+                        <div class="form-group">
+                            <label>会议地址</label>
+                            <select class="form-control" id="address">
+                                <option value=''>请选择</option>
+                                {volist name="address_list" id="data"}
+                                    {if condition="$meeting.address_id==$data.id"}
+                                    <option value="{$data.id}" selected>{$data.name}</option>
+                                    {else /}
+                                    <option value="{$data.id}">{$data.name}</option>
+                                    {/if}
+                                {/volist}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>会议模式</label>
+                            <select class="form-control" id="type">
+                                {if condition="$meeting.type==2"}
+                                <option value="2" selected>会议模式（投票模式）</option>
+                                {else /}
+                                <option value="2">会议模式（投票模式）</option>
+                                {/if}
+                                {if condition="$meeting.type==1"}
+                                <option value="1" selected>会议模式（讨论模式）</option>
+                                {else /}
+                                <option value="1">会议模式（讨论模式）</option>
+                                {/if}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>会议日期</label>
+                            <input type="text" id="date" class="date_picker form-control" placeholder="点击选择日期" value="{$meeting.date}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>开始时间</label>
+                            <input type="text" id="starttime" class="form-control" placeholder="点击选择日期" value="{$meeting.start_time}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>结束时间</label>
+                            <input type="text" id="endtime" class="form-control" placeholder="点击选择日期" value="{$meeting.end_time}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>参会人员</label>
+                            {volist name="user_list" id="data"}
+                            <div class="checkbox-inline">
+                                <label>
+                                    {if condition="(in_array($data.id, explode(',', $meeting.join_id))) "}
+                                   <input type="checkbox" name="user_ids" value="{$data.id}" checked>{$data.username}
+                                   {else/}
+                                    <input type="checkbox" name="user_ids" value="{$data.id}">{$data.username}
+                                    {/if}
+                                </label>
+                            </div>
+                            {/volist}
+                        </div>
+                        <div class="form-group">
+                            <label>选择议题</label>
+                            {volist name="ck_issue" id="data"}
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="issue_ids" value="{$data.id}" checked>{$data.name}
+                                </label>
+                            </div>
+                            {/volist}
+                            {volist name="issue_list" id="data"}
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="issue_ids" value="{$data.id}">{$data.name}
+                                </label>
+                            </div>
+                            {/volist}
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <button type="button" class="btn btn-primary" onclick="meeting_update()">提交</button>
+            {include file="footer" /}
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="{$Think.config.web_res_root}/js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="{$Think.config.web_res_root}/js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="{$Think.config.web_res_root}/js/jquery.metisMenu.js"></script>
+<!-- Morris Chart Js -->
+<script src="{$Think.config.web_res_root}/js/morris/raphael-2.1.0.min.js"></script>
+<script src="{$Think.config.web_res_root}/js/morris/morris.js"></script>
+<!-- Custom Js -->
+<script src="{$Think.config.web_res_root}/js/custom-scripts.js"></script>
+
+<!--DATE PICKER-->
+<script src="{$Think.config.web_res_root}js/datepicker/bootstrap-datetimepicker.js"></script>
+<script src="{$Think.config.web_res_root}js/datepicker/locales/bootstrap-datetimepicker.fr.js"></script>
+<script type="text/javascript" src="{$Think.config.web_res_root}/js/layer/layer.js"></script>
+<script type="text/javascript">
+    $('.date_picker').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1,
+        format: 'yyyy-mm-dd',
+        minView: '2'
+    });
+    $('#starttime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        forceParse: 0,
+        showMeridian: 1,
+        format: 'hh:ii',
+        minView: '0'
+    });
+    $('#endtime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        forceParse: 0,
+        showMeridian: 1,
+        format: 'hh:ii',
+        minView: '0'
+    });
+    $('#meeting_group').change(function () {
+        var join_id = $('#meeting_group').val();
+        var name = $('#meeting_group').find('option:selected').text();
+        $("input[name='user_ids']").prop('checked', false);
+        if (name == '请选择会议类型') {
+            $('#name').val('');
+        } else {
+            if (join_id != '') {
+                var ids = join_id.split(',');
+                $("input[name='user_ids']").each(function () {
+                    var val = $(this).val();
+                    if ($.inArray(val, ids) >= 0) {
+                        $(this).prop('checked', true);
+                    }
+                });
+            }
+            $('#name').val(name);
+        }
+    });
+
+    function meeting_update() {
+        var name = $('#name').val();
+        if (name == '') {
+            layer.alert('请输入会议主题');
+            return;
+        }
+        var address_id = $('#address option:selected').val();
+        if (address_id == '') {
+            layer.alert('请输入会议地址');
+            return;
+        }
+        var date = $('#date').val();
+        if (date == '') {
+            layer.alert('请输入会议日期');
+            return;
+        }
+        var starttime = $('#starttime').val();
+        if (starttime == '') {
+            layer.alert('请输入开始时间');
+            return;
+        }
+        var endtime = $('#endtime').val();
+        if (endtime == '') {
+            layer.alert('请输入结束时间');
+            return;
+        }
+        var a = "";
+        $("input[name='user_ids']:checkbox:checked").each(function () {
+            a += ($(this).val() + ',')
+        });
+        if (a == '') {
+            layer.alert('请选择参会人员');
+            return;
+        }
+        var b = "";
+        $("input[name='issue_ids']:checkbox:checked").each(function () {
+            b += ($(this).val() + ',')
+        });
+        if (b == '') {
+            layer.alert('请选择议题');
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            data: {
+                id: $('#id').val(),
+                title: name,
+                address_id: address_id,
+                join_id: a.substring(0, a.length - 1),
+                issue_id: b.substring(0, b.length - 1),
+                type: $('#type').val(),
+                date: date,
+                start_time: starttime,
+                end_time: endtime
+            },
+            url: "addMeeting",
+            success: function (ret) {
+                if (ret['code'] == 0) {
+                    layer.msg('保存会议成功');
+                    setTimeout(function () {
+                        window.history.back(-1);
+                    }, 200);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>
